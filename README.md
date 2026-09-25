@@ -52,14 +52,16 @@ omitted and the UI must handle its absence.
   (must match a `ServiceCategory.slug`), `order`, `highlights`, `body` (Markdown) are
   required. Optional: `icon`, `seo`, and on a category its `description`.
 - **TeamMember** (`content/schemas/team-member.ts`): `slug`, `name`, `title`, `role`,
-  `bio`, `photo`, `specializations`, `order` are required. Optional: `email`, `seo`.
+  `bio`, `specializations`, `order` are required. Optional: `photo` (falls back to the
+  seal monogram panel), `email`, `seo`.
 - **BlogPost** (`content/schemas/blog-post.ts`): `slug`, `title`, `excerpt`, `date`
   (`YYYY-MM-DD`), `author` (a `TeamMember.slug`), `tags`, `body` (Markdown) are
   required. Optional: `coverImage`, `coverCaption`, `readingTimeMinutes`, `seo`.
 - **Navigation** (`content/schemas/navigation.ts`): header items and footer columns and
   legal links are required. Optional: `header.cta`, `external`, `description` on links.
 - **UiStrings** (`content/schemas/ui-strings.ts`): all fields required — they carry the
-  Italian defaults of the boilerplate and can be re-worded per firm.
+  Italian defaults of the boilerplate (labels, section titles, empty states, 404 copy)
+  and can be re-worded per firm.
 - **SitePages** (`content/schemas/page-content.ts`): every page block is required except
   `seo` overrides, `hero.eyebrow`/`hero.meta`, home hero `image`/`secondaryCta`,
   `studioTeaser.image`/`note`, `principles`/`method` `intro`, `studio.timeline`,
@@ -69,6 +71,10 @@ omitted and the UI must handle its absence.
 
 - `slug` values are URL segments: kebab-case, stable, unique within their collection.
 - Long text fields (`body`, `bio`, `story`) are Markdown; short fields are plain text.
+  The prose renderer (`components/prose.tsx`) supports ATX headings (`#`–`###`),
+  paragraphs, ordered/unordered lists, blockquotes, thematic breaks, links,
+  `**strong**`/`*emphasis*`, and `` `code` `` — one nesting level of lists and no raw
+  HTML.
 - Colors are hex strings inside the firm's config, expressed as the named roles from
   `DESIGN.md` §2.1.
 - Fonts are configured as `family` + optional `source` URL in `site-config.ts`.

@@ -25,6 +25,11 @@ export type UiStrings = {
   postsByAuthorTitle: string;
   /** Meta prefix on legal stubs. */
   lastUpdatedLabel: string;
+  /** Copy for the 404 page. */
+  notFound: {
+    title: string;
+    body: string;
+  };
   vatLabel: string;
   fiscalCodeLabel: string;
   emptyStates: {

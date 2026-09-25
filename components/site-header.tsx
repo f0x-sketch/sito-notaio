@@ -52,7 +52,7 @@ export function SiteHeader({ brand, navItems, cta, contact }: SiteHeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b border-border bg-surface-raised transition-shadow duration-150 ${
+      className={`sticky top-0 z-50 overflow-x-clip border-b border-border bg-surface-raised transition-shadow duration-150 ${
         scrolled ? 'shadow-elevation-1' : ''
       }`}
     >

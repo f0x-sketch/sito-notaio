@@ -19,6 +19,10 @@ export const uiStrings: UiStrings = {
   relatedPostsTitle: 'Altri articoli',
   postsByAuthorTitle: 'Articoli di {name}',
   lastUpdatedLabel: 'Ultimo aggiornamento',
+  notFound: {
+    title: 'Pagina non trovata',
+    body: 'La pagina richiesta non è disponibile. Puoi tornare alla home o usare il menu per proseguire.',
+  },
   vatLabel: 'P.IVA',
   fiscalCodeLabel: 'C.F.',
   emptyStates: {

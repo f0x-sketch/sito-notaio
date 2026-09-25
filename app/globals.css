@@ -257,6 +257,100 @@
     }
   }
 
+  /* Inverse primary button (DESIGN.md §5.13): used only on surface-inverse bands. */
+  .button-inverse {
+    align-items: center;
+    background-color: var(--brand-surface-raised);
+    border-radius: var(--radius-xs);
+    color: var(--brand-primary);
+    display: inline-flex;
+    font-family: var(--brand-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    height: 44px;
+    justify-content: center;
+    padding-inline: 24px;
+    transition:
+      background-color 150ms var(--ease-standard),
+      transform 150ms var(--ease-standard);
+  }
+
+  .button-inverse:hover {
+    background-color: var(--brand-primary-tint);
+  }
+
+  .button-inverse:active {
+    background-color: var(--brand-primary-tint);
+    transform: translateY(1px);
+  }
+
+  @media (min-width: 1024px) {
+    .button-inverse {
+      height: 40px;
+    }
+  }
+
+  /* Underlined text link (DESIGN.md §4 / §6.2): state never color-alone. */
+  .text-link {
+    border-radius: var(--radius-xs);
+    color: var(--brand-text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: color 150ms var(--ease-standard);
+  }
+
+  .text-link:hover {
+    color: var(--brand-primary);
+  }
+
+  .text-link:active {
+    opacity: 0.75;
+  }
+
+  .text-link-inverse {
+    border-radius: var(--radius-xs);
+    color: var(--brand-text-inverse-muted);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: color 150ms var(--ease-standard);
+  }
+
+  .text-link-inverse:hover {
+    color: var(--brand-text-inverse);
+    filter: brightness(1.15);
+  }
+
+  .text-link-inverse:active {
+    opacity: 0.75;
+  }
+
+  /*
+   * Margin rule (DESIGN.md §5.14): 1px vertical hairline at the left edge of
+   * the hero text column on desktop; 32px horizontal rule above the H1 on
+   * mobile. Decorative only.
+   */
+  .margin-rule {
+    background-color: var(--brand-border);
+    display: block;
+    height: 1px;
+    margin-bottom: 16px;
+    width: 32px;
+  }
+
+  @media (min-width: 1024px) {
+    .margin-rule {
+      bottom: 0;
+      height: auto;
+      left: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+  }
+
   /* Skip link (DESIGN.md §4): hidden until keyboard focus. */
   .skip-link {
     background-color: var(--brand-surface-raised);

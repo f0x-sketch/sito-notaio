@@ -56,6 +56,22 @@ export function buildMetadata(overrides: Seo = {}): Metadata {
   };
 }
 
+/**
+ * Page/entity metadata from a content `Seo` block with content-derived
+ * fallbacks (title/description) before the `SiteConfig` defaults apply.
+ * A partial `Seo` block (e.g. title only) keeps the fallbacks for the rest.
+ */
+export function buildPageMetadata(
+  contentSeo: Seo | undefined,
+  fallback: { title: string; description?: string },
+): Metadata {
+  return buildMetadata({
+    ...contentSeo,
+    title: contentSeo?.title ?? fallback.title,
+    description: contentSeo?.description ?? fallback.description,
+  });
+}
+
 export function siteViewport(): Viewport {
   return {
     width: 'device-width',

@@ -8,7 +8,8 @@ export type TeamMember = {
   /** Role inside the firm, e.g. `Fondatrice`. */
   role: string;
   bio: Markdown;
-  photo: ImageRef;
+  /** Missing photos fall back to the seal monogram panel (DESIGN.md §5.8). */
+  photo?: ImageRef;
   email?: string;
   specializations: string[];
   order: number;
