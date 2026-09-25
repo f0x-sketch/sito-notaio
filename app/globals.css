@@ -195,6 +195,15 @@
     text-transform: uppercase;
   }
 
+  /* Display-serif card title sized for multi-column portrait grids. */
+  .type-card-title {
+    font-family: var(--brand-font-display);
+    font-size: 22px;
+    font-weight: 540;
+    letter-spacing: -0.012em;
+    line-height: 1.15;
+  }
+
   /* Oversized editorial index numerals (contents-page lists, principles). */
   .type-index {
     font-family: var(--brand-font-display);
@@ -237,6 +246,10 @@
 
     .type-caption {
       font-size: 14px;
+    }
+
+    .type-card-title {
+      font-size: 28px;
     }
 
     .type-index {

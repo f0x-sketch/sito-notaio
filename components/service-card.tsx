@@ -16,7 +16,9 @@ type ServiceCardProps = {
  */
 export function ServiceCard({ service, category, index, className }: ServiceCardProps) {
   return (
-    <article className={`group relative border-t border-border ${className ?? ''}`}>
+    <article
+      className={`group relative border-t border-border has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus ${className ?? ''}`}
+    >
       {index !== undefined ? (
         <span
           aria-hidden="true"

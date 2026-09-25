@@ -17,6 +17,16 @@ type Channel = {
   emphasis?: 'strong' | 'plain';
 };
 
+/** Deliberate break opportunities at `@` and `.` so long values never shatter mid-token. */
+function breakableValue(value: string): ReactNode[] {
+  return value.split(/(?=[@.])/).map((part, index) => (
+    <span key={index}>
+      {part}
+      <wbr />
+    </span>
+  ));
+}
+
 /**
  * ContactInfoBlock: ruled editorial rows of channels from
  * `SiteConfig.contact` only. A channel that is not configured is omitted
@@ -90,19 +100,22 @@ export function ContactInfoBlock({ contact, labels }: ContactInfoBlockProps) {
     <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
       {channels.map((channel) => {
         const rowClassName = `flex min-h-16 flex-col justify-center gap-2 border-t border-border py-6 lg:py-8 ${
-          channel.href ? 'group rounded-xs hover:bg-primary-tint hover:px-4' : ''
+          channel.href ? 'group rounded-xs hover:bg-primary-tint' : ''
         }`;
+        const strong = channel.emphasis === 'strong';
         const body = (
           <>
             <span className="type-label text-text-muted">{channel.label}</span>
             <span
-              className={`break-words ${
-                channel.emphasis === 'strong'
-                  ? 'type-heading-2 tabular-nums group-hover:text-primary group-hover:underline group-hover:underline-offset-4'
-                  : 'type-body'
-              }`}
+              className={
+                strong
+                  ? 'type-heading-3 tabular-nums group-hover:text-primary group-hover:underline group-hover:underline-offset-4'
+                  : 'type-body break-words'
+              }
             >
-              {channel.value}
+              {strong && typeof channel.value === 'string'
+                ? breakableValue(channel.value)
+                : channel.value}
             </span>
           </>
         );

@@ -73,7 +73,7 @@ export function Breadcrumbs({ labels, homeLabel, navLabel }: BreadcrumbsProps) {
               className="flex items-center gap-2"
             >
               {index > 0 ? (
-                <span aria-hidden="true" className="text-border-strong">
+                <span aria-hidden="true" className="text-text-muted">
                   ›
                 </span>
               ) : null}

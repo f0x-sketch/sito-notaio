@@ -24,7 +24,9 @@ function MetaLine({
   className?: string;
 }) {
   return (
-    <p className={`type-caption flex flex-wrap items-center gap-x-2 gap-y-1 text-text-muted ${className ?? ''}`}>
+    <p
+      className={`type-caption flex flex-wrap items-center gap-x-2 gap-y-1 text-text-muted ${className ?? ''}`}
+    >
       <time dateTime={post.date} className="tabular-nums">
         {formatDate(post.date)}
       </time>
@@ -39,15 +41,19 @@ function MetaLine({
 }
 
 /**
- * Post entry (DESIGN.md §5.9 restructured for editorial contemporary):
- * `featured` renders a magazine feature (cover + display title); the default
- * is a numbered contents-page row. Whole entry is one link; tags and meta
- * are not links.
+ * Post entry: `featured` renders a magazine feature (cover + display title);
+ * the default is a numbered contents-page row. Whole entry is one link; tags
+ * and meta are not links.
  */
 export function PostCard({ post, authorName, featured, index, className }: PostCardProps) {
+  const ringClassName =
+    'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus';
+
   if (featured) {
     return (
-      <article className={`group relative grid gap-6 lg:grid-cols-12 lg:gap-x-10 ${className ?? ''}`}>
+      <article
+        className={`group relative grid gap-6 lg:grid-cols-12 lg:gap-x-10 ${ringClassName} ${className ?? ''}`}
+      >
         {post.coverImage ? (
           <div className="lg:col-span-7">
             <MediaFrame
@@ -82,7 +88,9 @@ export function PostCard({ post, authorName, featured, index, className }: PostC
   }
 
   return (
-    <article className={`group relative border-t border-border ${className ?? ''}`}>
+    <article
+      className={`group relative border-t border-border ${ringClassName} ${className ?? ''}`}
+    >
       {index !== undefined ? (
         <span
           aria-hidden="true"
@@ -108,7 +116,9 @@ export function PostCard({ post, authorName, featured, index, className }: PostC
           </Link>
         </h3>
         <MetaLine post={post} authorName={authorName} />
-        <p className="type-body-small line-clamp-2 max-w-[52ch] text-text-muted">{post.excerpt}</p>
+        <p className="type-body-small line-clamp-2 max-w-[52ch] text-text-muted">
+          {post.excerpt}
+        </p>
         <span
           aria-hidden="true"
           className="absolute right-0 top-6 text-xl text-primary transition-transform duration-150 group-hover:translate-x-1 lg:top-8"

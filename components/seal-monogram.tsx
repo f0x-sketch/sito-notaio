@@ -30,7 +30,7 @@ export function SealMonogram({
       {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}
       className={`flex items-center justify-center rounded-full ${toneClassName} ${className ?? 'h-16 w-16'}`}
     >
-      <span className="type-heading-2 select-none">{initials ?? '—'}</span>
+      <span className="type-heading-3 select-none">{initials ?? '—'}</span>
     </div>
   );
 }

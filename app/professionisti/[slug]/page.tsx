@@ -58,7 +58,7 @@ export default async function TeamMemberPage({ params }: Props) {
             />
           </div>
           <div className="lg:col-span-7 lg:col-start-6 lg:self-center lg:pr-10">
-            <p className="type-label text-primary">{memberCaptionLine(member)}</p>
+            <p className="type-caption font-semibold text-primary">{memberCaptionLine(member)}</p>
             <span className="kicker-rule" aria-hidden="true" />
             <h1 className="type-title hyphens-auto">{member.name}</h1>
             {member.specializations.length > 0 ? (
