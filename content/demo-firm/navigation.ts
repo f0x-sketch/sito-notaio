@@ -6,62 +6,22 @@ import type { Navigation } from '../schemas';
 export const navigation: Navigation = {
   header: {
     items: [
-      { kind: 'link', label: 'Home', href: '/' },
       { kind: 'link', label: 'Studio', href: '/studio' },
-      {
-        kind: 'dropdown',
-        label: 'Servizi',
-        items: [
-          {
-            kind: 'link',
-            label: 'Tutti i servizi',
-            href: '/servizi',
-            description: 'Panoramica completa delle attività dello studio.',
-          },
-          { kind: 'link', label: 'Immobiliare', href: '/servizi#immobiliare' },
-          {
-            kind: 'link',
-            label: 'Impresa e società',
-            href: '/servizi#impresa',
-          },
-          {
-            kind: 'link',
-            label: 'Famiglia e successioni',
-            href: '/servizi#famiglia',
-          },
-        ],
-      },
+      { kind: 'link', label: 'Servizi', href: '/servizi' },
       { kind: 'link', label: 'Professionisti', href: '/professionisti' },
       { kind: 'link', label: 'Insights', href: '/insights' },
     ],
-    cta: { kind: 'link', label: 'Contattaci', href: '/contatti' },
+    cta: { kind: 'link', label: 'Contatti', href: '/contatti' },
   },
   footer: {
     columns: [
       {
-        title: 'Servizi',
+        title: 'Esplora',
         items: [
-          { kind: 'link', label: 'Tutti i servizi', href: '/servizi' },
-          { kind: 'link', label: 'Immobiliare', href: '/servizi#immobiliare' },
-          {
-            kind: 'link',
-            label: 'Impresa e società',
-            href: '/servizi#impresa',
-          },
-          {
-            kind: 'link',
-            label: 'Famiglia e successioni',
-            href: '/servizi#famiglia',
-          },
-        ],
-      },
-      {
-        title: 'Studio',
-        items: [
-          { kind: 'link', label: 'Chi siamo', href: '/studio' },
+          { kind: 'link', label: 'Studio', href: '/studio' },
+          { kind: 'link', label: 'Servizi', href: '/servizi' },
           { kind: 'link', label: 'Professionisti', href: '/professionisti' },
           { kind: 'link', label: 'Insights', href: '/insights' },
-          { kind: 'link', label: 'Contatti', href: '/contatti' },
         ],
       },
     ],

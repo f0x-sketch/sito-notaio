@@ -17,6 +17,7 @@ export const blogPosts: BlogPost[] = [
       width: 1200,
       height: 630,
     },
+    coverCaption: 'Illustrazione dimostrativa',
     tags: ['Immobiliare', 'Guida'],
     readingTimeMinutes: 6,
     body: `## La verifica della provenienza

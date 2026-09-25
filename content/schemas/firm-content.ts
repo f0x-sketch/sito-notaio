@@ -4,11 +4,13 @@ import type { SitePages } from './page-content';
 import type { Service, ServiceCategory } from './service';
 import type { SiteConfig } from './site-config';
 import type { TeamMember } from './team-member';
+import type { UiStrings } from './ui-strings';
 
 /** Complete, swappable content for one firm. */
 export type FirmContent = {
   config: SiteConfig;
   navigation: Navigation;
+  ui: UiStrings;
   serviceCategories: ServiceCategory[];
   services: Service[];
   team: TeamMember[];

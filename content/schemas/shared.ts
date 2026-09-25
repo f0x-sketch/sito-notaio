@@ -24,25 +24,42 @@ export type Seo = {
   noIndex?: boolean;
 };
 
-/** A themed color role. Shades are hex colors defined by the firm's brand. */
+/**
+ * A themed color role (hex). Maps to the design roles `primary` / `accent`:
+ * `base` → role value, `strong` → `*-strong` (hover/active), `tint` → `*-tint`
+ * (subtle section wash).
+ */
 export type ColorRamp = {
   /** Core shade of the role. */
   base: string;
-  light?: string;
-  dark?: string;
+  /** Hover/active shade. */
+  strong?: string;
+  /** Subtle wash for tinted sections and placeholder blocks. */
+  tint?: string;
   /** Text/icon color readable when placed on `base`. */
   onBase?: string;
 };
 
-export type NeutralRamp = ColorRamp & {
-  /** Page background. */
-  surface?: string;
-  /** Subtle background for cards and bands. */
-  muted?: string;
-  /** Hairline color for borders and dividers. */
-  border?: string;
-  /** Body text color. */
-  text?: string;
+/** Neutral theme roles (surfaces, text, borders). */
+export type NeutralRamp = {
+  /** Page background (design role `surface`). */
+  surface: string;
+  /** Cards, sticky header, drawer (role `surface-raised`). */
+  surfaceRaised: string;
+  /** Footer and CTA band (role `surface-inverse`). */
+  surfaceInverse: string;
+  /** Body text (role `text`). */
+  text: string;
+  /** Secondary copy, captions, meta (role `text-muted`). */
+  textMuted: string;
+  /** Hairlines, card borders, dividers (role `border`). */
+  border: string;
+  /** Hover borders, input borders (role `border-strong`). */
+  borderStrong: string;
+  /** Text on `surfaceInverse` (role `text-inverse`). */
+  textInverse?: string;
+  /** Secondary text on `surfaceInverse` (role `text-inverse-muted`). */
+  textInverseMuted?: string;
 };
 
 /** A typeface chosen by the firm. Fonts are configured here, never hard-coded in CSS. */
@@ -100,14 +117,31 @@ export type OfficeHours = {
   note?: string;
 };
 
-/** Button-style call to action. */
+/** Button-style or text-link call to action. */
 export type Cta = {
   label: string;
   href: string;
 };
 
-/** Shared hero block used by index and secondary pages. */
+/** Hero block used by interior pages (and as the base of the home hero). */
 export type PageHero = {
+  /** Small overline label above the title. */
+  eyebrow?: string;
   title: string;
   subtitle: string;
+  /** Optional supporting meta line under the deck. */
+  meta?: string;
+};
+
+/** One principle in a numbered list ("Il metodo", "Il nostro impegno"). */
+export type Principle = {
+  title: string;
+  description: string;
+};
+
+export type PrincipleSection = {
+  title: string;
+  intro?: string;
+  /** Three to four items render best. */
+  items: Principle[];
 };

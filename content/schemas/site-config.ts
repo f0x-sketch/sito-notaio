@@ -1,6 +1,5 @@
 import type {
   ColorRamp,
-  FontDefinition,
   GeoCoordinates,
   ImageRef,
   NeutralRamp,
@@ -16,16 +15,34 @@ export type FirmIdentity = {
   /** Full registered legal name. */
   legalName: string;
   tagline: string;
-  /** Short description used in teasers and metadata. */
+  /** Short description used in teasers, footer, and metadata. */
   description: string;
+  /** Initials used by the seal monogram fallback. */
+  initials?: string;
   foundingYear?: number;
 };
 
 export type BrandColors = {
-  primary: ColorRamp;
+  /** Headings, buttons, links, brand mark. */
+  primary: ColorRamp & {
+    /** Hover/active shade (design role `primary-strong`). */
+    strong: string;
+    /** Subtle section tint (design role `primary-tint`). */
+    tint: string;
+  };
+  /** Optional second brand hue. */
   secondary: ColorRamp;
+  /** Seal accent (design role `accent`); area kept small. */
   accent: ColorRamp;
   neutral: NeutralRamp;
+  /** Focus-visible ring (design role `focus`). Defaults to `accent`. */
+  focus?: string;
+  /** Reserved semantic roles. */
+  semantic?: {
+    success: string;
+    warning: string;
+    error: string;
+  };
 };
 
 /** Branding assets and theme values. Swapping these re-skins the whole site. */
@@ -50,6 +67,8 @@ export type ContactInfo = {
   pec: string;
   address: PostalAddress;
   geo?: GeoCoordinates;
+  /** External map link ("Apri in mappa"). */
+  mapUrl?: string;
   officeHours: OfficeHours[];
 };
 

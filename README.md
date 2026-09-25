@@ -11,16 +11,18 @@ the content layer.
 | --- | --- |
 | Firm identity, branding, colors, fonts, address, contacts, social, SEO, legal data | `content/demo-firm/site-config.ts` |
 | Header and footer navigation | `content/demo-firm/navigation.ts` |
+| Italian UI strings (labels, section titles, empty states) | `content/demo-firm/ui-strings.ts` |
 | Service categories and services | `content/demo-firm/services.ts` |
 | Team members | `content/demo-firm/team.ts` |
 | Blog posts (Markdown bodies included) | `content/demo-firm/blog.ts` |
-| Editorial copy for home, studio, contact, index heroes, legal stubs | `content/demo-firm/pages.ts` |
-| Logo, favicon, OG image, portrait and cover placeholders | `public/images/demo-firm/` |
+| Editorial copy for home, studio, contact, index heroes, CTA band, legal stubs | `content/demo-firm/pages.ts` |
+| Logo, favicon, OG image, photo and cover placeholders | `public/images/demo-firm/` |
 | Typed schemas (do not edit per firm) | `content/schemas/` |
 | Active-firm pointer consumed by the app | `content/index.ts` |
 
 The files under `content/demo-firm/` describe one **fictional** studio and exist only to
-exercise every page. All its values are placeholders.
+exercise every page. All its values are placeholders. Theme values map the named design
+roles documented in `DESIGN.md` (§2.1); components consume roles, never raw values.
 
 ## How to swap in a new firm
 
@@ -38,12 +40,14 @@ No component or page needs to change: the presentation layer renders exclusively
 Required fields are non-optional properties in the schemas; anything marked `?` can be
 omitted and the UI must handle its absence.
 
-- **SiteConfig** (`content/schemas/site-config.ts`): identity, branding (logo light/dark,
-  favicon, OG image, color ramps, typography), contact (phone, email, PEC, full address,
-  office hours), social links, SEO defaults and legal data (P.IVA, privacy/cookie
-  routes) are required. Optional: `foundingYear`, `fiscalCode`, `geo`,
-  `seo.siteUrl`, `seo.twitterHandle`, `seo.ogImage`, per-ramp shades (`light`, `dark`,
-  `onBase`), `neutral.surface/muted/border/text`, `mono` font, `baseSizePx`.
+- **SiteConfig** (`content/schemas/site-config.ts`): identity (name, legal name, tagline,
+  description), branding (logo light/dark, favicon, OG image, color roles, typography),
+  contact (phone, email, PEC, full address, office hours), social links, SEO defaults
+  (title template, default title and description), and legal data (P.IVA, privacy/cookie
+  routes) are required. Optional: `initials`, `foundingYear`, `fiscalCode`, `geo`,
+  `mapUrl`, `seo.siteUrl`, `seo.twitterHandle`, `seo.ogImage`, `primary.strong/tint`,
+  `accent.strong/tint`, `secondary`, `focus`, `semantic`, per-ramp `onBase`,
+  `neutral.textInverse/textInverseMuted`, `mono` font, `baseSizePx`.
 - **Service** (`content/schemas/service.ts`): `slug`, `title`, `summary`, `category`
   (must match a `ServiceCategory.slug`), `order`, `highlights`, `body` (Markdown) are
   required. Optional: `icon`, `seo`, and on a category its `description`.
@@ -51,20 +55,25 @@ omitted and the UI must handle its absence.
   `bio`, `photo`, `specializations`, `order` are required. Optional: `email`, `seo`.
 - **BlogPost** (`content/schemas/blog-post.ts`): `slug`, `title`, `excerpt`, `date`
   (`YYYY-MM-DD`), `author` (a `TeamMember.slug`), `tags`, `body` (Markdown) are
-  required. Optional: `coverImage`, `readingTimeMinutes`, `seo`.
+  required. Optional: `coverImage`, `coverCaption`, `readingTimeMinutes`, `seo`.
 - **Navigation** (`content/schemas/navigation.ts`): header items and footer columns and
   legal links are required. Optional: `header.cta`, `external`, `description` on links.
+- **UiStrings** (`content/schemas/ui-strings.ts`): all fields required — they carry the
+  Italian defaults of the boilerplate and can be re-worded per firm.
 - **SitePages** (`content/schemas/page-content.ts`): every page block is required except
-  `seo` overrides, `studio.timeline`, and the hero `image`/`secondaryCta` on the home page.
+  `seo` overrides, `hero.eyebrow`/`hero.meta`, home hero `image`/`secondaryCta`,
+  `studioTeaser.image`/`note`, `principles`/`method` `intro`, `studio.timeline`,
+  `studio.sede` (and its `caption`), and `ctaBand.body`.
 
 ## Conventions
 
 - `slug` values are URL segments: kebab-case, stable, unique within their collection.
 - Long text fields (`body`, `bio`, `story`) are Markdown; short fields are plain text.
-- Colors are hex strings inside the firm's config; components consume named roles
-  (`primary`, `secondary`, `accent`, `neutral`), never raw values.
+- Colors are hex strings inside the firm's config, expressed as the named roles from
+  `DESIGN.md` §2.1.
 - Fonts are configured as `family` + optional `source` URL in `site-config.ts`.
 - Icons use the shared `IconName` keys declared in `content/schemas/shared.ts`.
+- Copy-length constraints (headings, decks, card summaries) live in `DESIGN.md` §7.
 - The site is Italian-first. Localisation is a future extension and would wrap this
   content layer rather than change it.
 

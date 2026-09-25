@@ -5,4 +5,5 @@ export type * from './team-member';
 export type * from './blog-post';
 export type * from './navigation';
 export type * from './page-content';
+export type * from './ui-strings';
 export type * from './firm-content';

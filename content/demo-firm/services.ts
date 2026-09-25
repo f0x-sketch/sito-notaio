@@ -32,7 +32,7 @@ export const services: Service[] = [
     slug: 'compravendita-immobiliare',
     title: 'Compravendita immobiliare',
     summary:
-      'Dalla verifica della provenienza dell’immobile alla registrazione dell’atto, con tempi e costi chiari fin dal primo incontro.',
+      'Verifiche, stipula e adempimenti per compravendere in tutta sicurezza.',
     category: 'immobiliare',
     order: 1,
     icon: 'home',
@@ -60,7 +60,7 @@ Lo studio cura la trascrizione nei registri immobiliari, le volture catastali e 
     slug: 'mutui-ipotecari',
     title: 'Mutui e ipoteche',
     summary:
-      'Istruzione e stipula dei finanziamenti bancari connessi a un immobile, dalla delibera alla cancellazione dell’ipoteca.',
+      'Istruzione e stipula dei finanziamenti, iscrizione e cancellazione delle ipoteche.',
     category: 'immobiliare',
     order: 2,
     icon: 'key',
@@ -81,7 +81,7 @@ Vengono curati l'iscrizione dell'ipoteca a garanzia del finanziamento e, a estin
     slug: 'costituzione-societa',
     title: 'Costituzione di società',
     summary:
-      'Scelta della forma societaria, redazione dello statuto e adempimenti di iscrizione al Registro delle Imprese.',
+      'Dalla scelta della forma societaria all’iscrizione al Registro delle Imprese.',
     category: 'impresa',
     order: 1,
     icon: 'briefcase',
@@ -102,7 +102,7 @@ Lo studio cura l'iscrizione al Registro delle Imprese e assiste la società anch
     slug: 'cessione-quote',
     title: 'Cessione di quote societarie',
     summary:
-      'Trasferimenti di partecipazioni, patti parasociali e operazioni straordinarie con la massima tutela per cedente e cessionario.',
+      'Trasferimenti di partecipazioni e patti tra soci con tutele certe.',
     category: 'impresa',
     order: 2,
     icon: 'file-text',
@@ -123,7 +123,7 @@ Quando l'operazione lo richiede, vengono predisposti patti parasociali per disci
     slug: 'successioni-donazioni',
     title: 'Successioni e donazioni',
     summary:
-      'Accettazione dell’eredità, divisione del patrimonio e donazioni con una pianificazione attenta alle esigenze della famiglia.',
+      'Accettazione dell’eredità, divisioni e donazioni pianificate con la famiglia.',
     category: 'famiglia',
     order: 1,
     icon: 'scale',
@@ -144,7 +144,7 @@ Vengono curati l'accettazione dell'eredità, la divisione tra i chiamati e le do
     slug: 'accordi-patrimoniali',
     title: 'Accordi patrimoniali tra conviventi',
     summary:
-      'Regolamentazione dei rapporti patrimoniali della coppia: assegnazioni, comproprietà e patti di convivenza.',
+      'Patti di convivenza, comproprietà e tutela della casa familiare.',
     category: 'famiglia',
     order: 2,
     icon: 'handshake',

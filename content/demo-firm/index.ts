@@ -8,11 +8,13 @@ import { pages } from './pages';
 import { siteConfig } from './site-config';
 import { serviceCategories, services } from './services';
 import { team } from './team';
+import { uiStrings } from './ui-strings';
 
 /** Fictional demo firm used to exercise every page of the boilerplate. */
 export const demoFirm: FirmContent = {
   config: siteConfig,
   navigation,
+  ui: uiStrings,
   serviceCategories,
   services,
   team,

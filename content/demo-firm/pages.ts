@@ -4,29 +4,62 @@
 import type { SitePages } from '../schemas';
 
 export const pages: SitePages = {
+  ctaBand: {
+    title: 'Hai un atto da predisporre?',
+    body: 'Raccontaci la tua esigenza: tempi, documentazione e costi chiari dal primo contatto.',
+    cta: { label: 'Contatti', href: '/contatti' },
+  },
   home: {
     hero: {
       title: 'Un notaio vicino, per decisioni che contano.',
       subtitle:
-        'Immobili, impresa, famiglia: accompagniamo ogni passaggio con chiarezza, tempi certi e un linguaggio che si capisce.',
-      primaryCta: { label: 'Scopri i servizi', href: '/servizi' },
-      secondaryCta: { label: 'Conosci lo studio', href: '/studio' },
+        'Immobili, impresa, famiglia: accompagniamo ogni passaggio con chiarezza, tempi certi e parole che si capiscono.',
+      primaryCta: { label: 'Servizi', href: '/servizi' },
+      secondaryCta: { label: 'Contatti', href: '/contatti' },
       image: {
-        src: '/images/demo-firm/cover-1.svg',
-        alt: 'Illustrazione dimostrativa dello studio',
-        width: 1200,
-        height: 630,
+        src: '/images/demo-firm/photo-1.svg',
+        alt: 'Dettaglio dimostrativo degli ambienti dello studio',
+        width: 800,
+        height: 1000,
       },
     },
     servicesTeaser: {
-      title: 'I nostri servizi',
+      title: 'Di cosa ci occupiamo',
       intro:
-        'Attività immobiliari, societarie e familiari: ogni pratica segue un percorso chiaro, dalla prima consulenza agli adempimenti finali.',
+        'Attività immobiliari, societarie e familiari, con un percorso chiaro dalla prima consulenza agli adempimenti finali.',
+      cta: { label: 'Vedi tutti i servizi', href: '/servizi' },
     },
     studioTeaser: {
       title: 'Uno studio che spiega, oltre che autenticare',
-      body: `Da oltre venticinque anni lo studio accompagna famiglie e imprese nelle operazioni più importanti. Crediamo che la certezza del diritto passi anche dalla chiarezza delle parole: per questo ogni atto viene preparato e commentato insieme al cliente.`,
-      cta: { label: 'La nostra storia', href: '/studio' },
+      body: `Da oltre venticinque anni accompagniamo famiglie e imprese nelle operazioni più importanti. Ogni atto viene preparato e commentato insieme al cliente.`,
+      cta: { label: 'Lo studio', href: '/studio' },
+      image: {
+        src: '/images/demo-firm/photo-2.svg',
+        alt: 'Interno dimostrativo dello studio',
+        width: 1200,
+        height: 900,
+      },
+      note: 'Dal 1998',
+    },
+    method: {
+      title: 'Il metodo',
+      items: [
+        {
+          title: 'Ascolto',
+          description:
+            'Un primo incontro per capire obiettivi, tempi e documentazione necessaria.',
+        },
+        {
+          title: 'Istruttoria',
+          description:
+            'Verifiche accurate su documenti, persone e immobili, con riscontro continuo.',
+        },
+        {
+          title: 'Stipula e adempimenti',
+          description:
+            'Atto commentato insieme alle parti e formalità seguite fino alla consegna.',
+        },
+      ],
     },
     teamTeaser: {
       title: 'Le persone',
@@ -35,20 +68,16 @@ export const pages: SitePages = {
       cta: { label: 'Professionisti', href: '/professionisti' },
     },
     insightsTeaser: {
-      title: 'Insights',
+      title: 'Aggiornamenti',
       intro:
         'Guide pratiche e aggiornamenti per orientarsi tra atti, scadenze e adempimenti.',
       cta: { label: 'Tutti gli articoli', href: '/insights' },
     },
-    ctaBand: {
-      title: 'Hai un atto da predisporre?',
-      body: 'Raccontaci la tua esigenza: ti indicheremo documentazione, tempi e costi fin dal primo contatto.',
-      cta: { label: 'Contattaci', href: '/contatti' },
-    },
   },
   studio: {
     hero: {
-      title: 'Lo studio',
+      eyebrow: 'Lo Studio',
+      title: 'Uno studio al servizio di chi compie scelte importanti',
       subtitle:
         'Una tradizione notarile che parla il linguaggio di oggi, al servizio di famiglie e imprese.',
     },
@@ -63,31 +92,6 @@ Ogni pratica ha un referente preciso e un calendario condiviso con il cliente. L
 ## Per famiglie e imprese
 
 Dalla prima casa al passaggio generazionale di un'impresa, lo studio affronta ogni operazione con la stessa attenzione: capire l'obiettivo del cliente e trovare lo strumento giusto per raggiungerlo.`,
-    values: [
-      {
-        title: 'Chiarezza',
-        description:
-          'Ogni atto viene spiegato prima di essere firmato, con parole comprensibili e tempi dichiarati.',
-        icon: 'pen',
-      },
-      {
-        title: 'Certeza',
-        description:
-          'Istruttorie accurate e adempimenti seguiti fino in fondo, per una tutela che dura nel tempo.',
-        icon: 'shield',
-      },
-      {
-        title: 'Vicinanza',
-        description:
-          'Un referente diretto per ogni pratica e una segreteria sempre raggiungibile.',
-        icon: 'users',
-      },
-    ],
-    credentials: [
-      'Iscrizione all’Archivio Notarile Distrettuale di Città di Prova',
-      'Assicurazione di responsabilità civile professionale aggiornata',
-      'Adesione alle iniziative di formazione del Consiglio Notarile distrettuale',
-    ],
     timeline: [
       {
         year: '1998',
@@ -108,41 +112,67 @@ Dalla prima casa al passaggio generazionale di un'impresa, lo studio affronta og
           'Lo studio si trasferisce in una sede più ampia, con sale riunioni accessibili e archivio digitale.',
       },
     ],
+    principles: {
+      title: 'Il nostro impegno',
+      items: [
+        {
+          title: 'Chiarezza',
+          description:
+            'Ogni atto viene spiegato prima di essere firmato, con parole comprensibili e tempi dichiarati.',
+        },
+        {
+          title: 'Certeza',
+          description:
+            'Istruttorie accurate e adempimenti seguiti fino in fondo, per una tutela che dura nel tempo.',
+        },
+        {
+          title: 'Vicinanza',
+          description:
+            'Un referente diretto per ogni pratica e una segreteria sempre raggiungibile.',
+        },
+      ],
+    },
+    sede: {
+      image: {
+        src: '/images/demo-firm/photo-3.svg',
+        alt: 'Facciata dimostrativa della sede dello studio',
+        width: 1680,
+        height: 720,
+      },
+      caption: 'La sede dello studio',
+    },
   },
   servicesIndex: {
     hero: {
-      title: 'Servizi',
+      eyebrow: 'Servizi',
+      title: 'Servizi notarili per famiglie e imprese',
       subtitle:
         'Le attività dello studio organizzate per area: immobiliare, impresa e società, famiglia e successioni.',
     },
   },
   teamIndex: {
     hero: {
-      title: 'Professionisti',
+      eyebrow: 'Professionisti',
+      title: 'Le persone dello studio',
       subtitle:
-        'Le persone che seguono le tue pratiche, con ruoli e competenze dichiarati con trasparenza.',
+        'Professionisti qualificati e raggiungibili, con ruoli e competenze dichiarati con trasparenza.',
     },
   },
   insightsIndex: {
     hero: {
-      title: 'Insights',
+      eyebrow: 'Insights',
+      title: 'Guide e aggiornamenti',
       subtitle:
-        'Guide pratiche, aggiornamenti e approfondimenti sul mondo degli atti notarili.',
+        'Guide pratiche e approfondimenti per orientarsi negli atti della vita quotidiana e d’impresa.',
     },
   },
   contact: {
     hero: {
-      title: 'Contatti',
+      eyebrow: 'Contatti',
+      title: 'Come contattarci',
       subtitle:
         'Siamo a disposizione per un primo confronto su documentazione, tempi e costi della tua operazione.',
     },
-    intro: `## Come raggiungerci
-
-Lo studio è raggiungibile facilmente in auto e con i mezzi pubblici. L'accesso è privo di barriere architettoniche.
-
-## Per appuntamenti
-
-Le stipule e i ricevimenti si svolgono su appuntamento: è sufficiente contattare la segreteria via telefono, email o PEC.`,
     mapPlaceholderAlt: 'Mappa dimostrativa della sede dello studio',
   },
   legal: [

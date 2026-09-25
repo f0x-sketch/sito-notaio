@@ -11,6 +11,7 @@ export const siteConfig: SiteConfig = {
     tagline: 'Certeza e chiarezza per gli atti più importanti.',
     description:
       'Uno studio notarile dimostrativo che accompagna famiglie e imprese nelle operazioni immobiliari, societarie e successorie, con linguaggio semplice e tempi certi.',
+    initials: 'SN',
     foundingYear: 1998,
   },
   branding: {
@@ -42,32 +43,30 @@ export const siteConfig: SiteConfig = {
     colors: {
       primary: {
         base: '#1F4B47',
-        light: '#2F6A64',
-        dark: '#14332F',
+        strong: '#14332F',
+        tint: '#E6EDEC',
         onBase: '#FBFAF7',
       },
       secondary: {
         base: '#334E68',
-        light: '#48698A',
-        dark: '#24384C',
         onBase: '#FFFFFF',
       },
       accent: {
         base: '#A67C3D',
-        light: '#C29A5C',
-        dark: '#7E5C2C',
         onBase: '#FFFFFF',
       },
       neutral: {
-        base: '#6E6A61',
-        light: '#EDEAE3',
-        dark: '#232220',
-        onBase: '#FFFFFF',
         surface: '#FAF8F4',
-        muted: '#F0EDE6',
-        border: '#DDD7CC',
+        surfaceRaised: '#FFFEFA',
+        surfaceInverse: '#14332F',
         text: '#232220',
+        textMuted: '#5C5A54',
+        border: '#DDD7CC',
+        borderStrong: '#B9B3A6',
+        textInverse: '#FAF8F4',
+        textInverseMuted: '#A8B3AE',
       },
+      focus: '#A67C3D',
     },
     typography: {
       heading: {
@@ -96,6 +95,7 @@ export const siteConfig: SiteConfig = {
       lat: 45.0,
       lng: 9.0,
     },
+    mapUrl: 'https://www.openstreetmap.org/?mlat=45.0&mlon=9.0#map=14/45.0/9.0',
     officeHours: [
       { days: 'lunedì – venerdì', hours: '09:00 – 13:00' },
       {
