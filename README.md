@@ -2,8 +2,8 @@
 
 Reusable website boilerplate for Italian notary offices. The repository separates a
 **firm content layer** (everything a real firm replaces) from the **presentation layer**
-(components and pages, added in later work). Nothing firm-specific is hard-coded outside
-the content layer.
+(the Next.js shell in `app/`, `components/`, `lib/`; page bodies are added in later
+work). Nothing firm-specific is hard-coded outside the content layer.
 
 ## Where firm-specific data lives
 
@@ -77,11 +77,33 @@ omitted and the UI must handle its absence.
 - The site is Italian-first. Localisation is a future extension and would wrap this
   content layer rather than change it.
 
+## Presentation layer (Next.js shell)
+
+The App Router scaffold renders everything from `site` in `content/index.ts`:
+
+| Concern | File |
+| --- | --- |
+| Root layout: `lang="it"`, theme tokens, SEO metadata, shell chrome | `app/layout.tsx` |
+| Global tokens: color/type/spacing roles, focus, reduced motion | `app/globals.css` |
+| Header + mobile drawer + footer + breadcrumbs | `components/` |
+| Typed content accessors (`getServices`, `getTeamMembers`, `getPosts`, …) | `lib/content.ts` |
+| SEO helpers (`buildMetadata(pageSeo)`, `siteViewport`) | `lib/seo.ts` |
+| `SiteConfig` → design-role CSS variables | `lib/theme.ts` |
+| Nav flattening + breadcrumb label map | `lib/nav.ts` |
+
+Pages consume content through the `lib/content.ts` accessors, build metadata with
+`buildMetadata` (passing their block's `seo`), and style with the role utilities
+(`bg-surface`, `text-primary`, `border-border`, …), type roles (`.type-title`,
+`.type-body`, …), and `.button-primary` / `.button-secondary`. Firm values never
+appear in components — only in `SiteConfig` and the content files.
+
 ## Verification
 
 ```bash
 npm install
 npm run typecheck
+npm run lint
+npm run build
 ```
 
 To confirm nothing firm-specific has leaked outside the content layer, search the

@@ -1,0 +1,292 @@
+@import 'tailwindcss';
+
+/*
+ * Design roles from DESIGN.md §2. Values arrive as `--brand-*` custom
+ * properties injected from `SiteConfig` by the root layout (`lib/theme.ts`).
+ * Components use named roles only — never raw hex values.
+ */
+@theme inline {
+  --color-primary: var(--brand-primary);
+  --color-primary-strong: var(--brand-primary-strong);
+  --color-primary-tint: var(--brand-primary-tint);
+  --color-primary-on: var(--brand-primary-on);
+  --color-accent: var(--brand-accent);
+  --color-accent-strong: var(--brand-accent-strong);
+  --color-accent-tint: var(--brand-accent-tint);
+  --color-surface: var(--brand-surface);
+  --color-surface-raised: var(--brand-surface-raised);
+  --color-surface-inverse: var(--brand-surface-inverse);
+  --color-text: var(--brand-text);
+  --color-text-muted: var(--brand-text-muted);
+  --color-text-inverse: var(--brand-text-inverse);
+  --color-text-inverse-muted: var(--brand-text-inverse-muted);
+  --color-border: var(--brand-border);
+  --color-border-strong: var(--brand-border-strong);
+  --color-focus: var(--brand-focus);
+  --color-success: var(--brand-success);
+  --color-warning: var(--brand-warning);
+  --color-error: var(--brand-error);
+  --font-display: var(--brand-font-display);
+  --font-body: var(--brand-font-body);
+  --shadow-elevation-1: var(--brand-shadow-1);
+  --shadow-elevation-2: var(--brand-shadow-2);
+}
+
+@theme {
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+}
+
+/*
+ * Spacing and density tokens (DESIGN.md §2.3): 4px base grid, document
+ * margins. Responsive values are referenced through the semantic classes
+ * below and through `var(--...)` where a class does not apply.
+ */
+:root {
+  --page-gutter: 20px;
+  --section-y: 56px;
+  --section-y-lg: 72px;
+  --stack-gap: 16px;
+  --card-gap: 16px;
+  --prose-measure: 100%;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-gutter: 48px;
+    --section-y: 96px;
+    --section-y-lg: 128px;
+    --stack-gap: 24px;
+    --card-gap: 24px;
+    --prose-measure: 68ch;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --page-gutter: 64px;
+  }
+}
+
+@layer base {
+  html {
+    font-size: var(--brand-base-size, 16px);
+  }
+
+  body {
+    background-color: var(--brand-surface);
+    color: var(--brand-text);
+    font-family: var(--brand-font-body);
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus contract (DESIGN.md §2.7): visible ring on every surface. */
+  :focus-visible {
+    outline: 2px solid var(--brand-focus);
+    outline-offset: 2px;
+  }
+
+  .surface-inverse :focus-visible,
+  .surface-inverse:focus-visible {
+    outline-color: var(--brand-text-inverse);
+  }
+}
+
+@layer components {
+  /* Max content width 1200px, centered, aligned to the page gutter. */
+  .container-page {
+    margin-inline: auto;
+    max-width: 1200px;
+    padding-inline: var(--page-gutter);
+    width: 100%;
+  }
+
+  .section-y {
+    padding-block: var(--section-y);
+  }
+
+  .section-y-lg {
+    padding-block: var(--section-y-lg);
+  }
+
+  /* Typography roles (DESIGN.md §2.2). */
+  .type-display {
+    font-family: var(--brand-font-display);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.05;
+  }
+
+  .type-title {
+    font-family: var(--brand-font-display);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.12;
+  }
+
+  .type-heading-2 {
+    font-family: var(--brand-font-display);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .type-heading-3 {
+    font-family: var(--brand-font-body);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .type-body {
+    font-family: var(--brand-font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .type-body-small {
+    font-family: var(--brand-font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  .type-caption {
+    font-family: var(--brand-font-body);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .type-label {
+    font-family: var(--brand-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 1024px) {
+    .type-display {
+      font-size: 56px;
+    }
+
+    .type-title {
+      font-size: 40px;
+    }
+
+    .type-heading-2 {
+      font-size: 32px;
+    }
+
+    .type-heading-3 {
+      font-size: 20px;
+    }
+
+    .type-body {
+      font-size: 17px;
+    }
+
+    .type-caption {
+      font-size: 14px;
+    }
+  }
+
+  /* Buttons (DESIGN.md §4). Text color comes from the primary ramp's onBase. */
+  .button-primary {
+    align-items: center;
+    background-color: var(--brand-primary);
+    border-radius: var(--radius-xs);
+    color: var(--brand-primary-on);
+    display: inline-flex;
+    font-family: var(--brand-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    height: 44px;
+    justify-content: center;
+    padding-inline: 24px;
+    transition:
+      background-color 150ms var(--ease-standard),
+      transform 150ms var(--ease-standard);
+  }
+
+  .button-primary:hover {
+    background-color: var(--brand-primary-strong);
+  }
+
+  .button-primary:active {
+    background-color: var(--brand-primary-strong);
+    transform: translateY(1px);
+  }
+
+  .button-secondary {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid var(--brand-border-strong);
+    border-radius: var(--radius-xs);
+    color: var(--brand-text);
+    display: inline-flex;
+    font-family: var(--brand-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    height: 44px;
+    justify-content: center;
+    padding-inline: 24px;
+    transition:
+      background-color 150ms var(--ease-standard),
+      border-color 150ms var(--ease-standard),
+      transform 150ms var(--ease-standard);
+  }
+
+  .button-secondary:hover {
+    background-color: var(--brand-primary-tint);
+    border-color: var(--brand-primary);
+  }
+
+  .button-secondary:active {
+    transform: translateY(1px);
+  }
+
+  @media (min-width: 1024px) {
+    .button-primary,
+    .button-secondary {
+      height: 40px;
+    }
+  }
+
+  /* Skip link (DESIGN.md §4): hidden until keyboard focus. */
+  .skip-link {
+    background-color: var(--brand-surface-raised);
+    border: 1px solid var(--brand-border);
+    left: 0;
+    padding: 12px 16px;
+    position: fixed;
+    top: 0;
+    transform: translateY(-120%);
+    transition: transform 150ms var(--ease-standard);
+    z-index: 100;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion path (DESIGN.md §2.6): durations collapse, transforms drop. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .skip-link {
+    transition: none;
+  }
+}
