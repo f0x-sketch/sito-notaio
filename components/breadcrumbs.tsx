@@ -12,6 +12,7 @@ type BreadcrumbsProps = {
   /** Route-tree label map built server-side (`lib/nav.ts`). */
   labels: Record<string, string>;
   homeLabel: string;
+  navLabel: string;
 };
 
 function humanize(segment: string): string {
@@ -41,17 +42,24 @@ function buildCrumbs(
 }
 
 /**
- * Route-driven breadcrumbs (DESIGN.md §5.4): `nav aria-label="Percorso"`,
- * `›` separators, last item current and unlinked, hidden on the homepage.
+ * Route-driven breadcrumbs (DESIGN.md §5.4): labelled `nav`, `›` separators,
+ * last item current and unlinked, hidden on the homepage and on unknown paths
+ * (the prerendered 404 renders at `/_not-found` server-side, so breadcrumbs
+ * must stay absent for any unrecognised route to avoid a hydration mismatch).
  */
-export function Breadcrumbs({ labels, homeLabel }: BreadcrumbsProps) {
+export function Breadcrumbs({ labels, homeLabel, navLabel }: BreadcrumbsProps) {
   const pathname = usePathname();
   const crumbs = buildCrumbs(pathname, labels, homeLabel);
 
+  // Hide on the homepage and on paths that do not match any known route.
   if (crumbs.length <= 1) return null;
+  const firstSegment = crumbs[1]?.href ?? '';
+  if (firstSegment && !(firstSegment in labels) && !Object.keys(labels).some((k) => k.startsWith(`${firstSegment}/`))) {
+    return null;
+  }
 
   return (
-    <nav aria-label="Percorso" className="container-page pt-6">
+    <nav aria-label={navLabel} className="container-page pt-6">
       <ol className="type-caption flex flex-wrap items-center gap-x-2 gap-y-1 text-text-muted">
         {crumbs.map((crumb, index) => {
           const last = index === crumbs.length - 1;

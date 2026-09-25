@@ -7,6 +7,7 @@ import {
 import { buildPageMetadata } from '@/lib/seo';
 import { PageHero } from '@/components/page-hero';
 import { PostCard } from '@/components/post-card';
+import { SectionHeader } from '@/components/section-header';
 
 const { insightsIndex } = getSite().pages;
 
@@ -28,7 +29,8 @@ export default function InsightsIndexPage() {
           <p className="type-body text-text-muted">{ui.emptyStates.posts}</p>
         ) : (
           <>
-            <div className="grid gap-[var(--card-gap)] lg:grid-cols-3">
+            <SectionHeader title={ui.insightsSectionTitle} />
+            <div className="mt-8 grid gap-[var(--card-gap)] lg:grid-cols-3">
               <PostCard
                 post={posts[0]}
                 authorName={getTeamMemberBySlug(posts[0].author)?.name ?? ''}

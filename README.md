@@ -77,7 +77,7 @@ omitted and the UI must handle its absence.
   HTML.
 - Colors are hex strings inside the firm's config, expressed as the named roles from
   `DESIGN.md` §2.1.
-- Fonts are configured as `family` + optional `source` URL in `site-config.ts`.
+- Fonts are configured as a `family` CSS stack in `site-config.ts`; the boilerplate ships self-hosted defaults via `next/font`.
 - Icons use the shared `IconName` keys declared in `content/schemas/shared.ts`.
 - Copy-length constraints (headings, decks, card summaries) live in `DESIGN.md` §7.
 - The site is Italian-first. Localisation is a future extension and would wrap this

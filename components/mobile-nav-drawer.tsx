@@ -12,6 +12,7 @@ type MobileNavDrawerProps = {
   contact: { phone: string; email: string };
   currentPath: string;
   panelId: string;
+  navLabel: string;
 };
 
 function isCurrent(href: string, pathname: string): boolean {
@@ -32,6 +33,7 @@ export function MobileNavDrawer({
   contact,
   currentPath,
   panelId,
+  navLabel,
 }: MobileNavDrawerProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -82,7 +84,7 @@ export function MobileNavDrawer({
           : 'pointer-events-none invisible translate-x-2 opacity-0'
       }`}
     >
-      <nav aria-label="Menu di navigazione" className="flex min-h-[calc(100dvh-4rem)] flex-col">
+      <nav aria-label={navLabel} className="flex min-h-[calc(100dvh-4rem)] flex-col">
         <ul className="border-b border-border">
           {items.map((item, index) => (
             <li key={item.href} className="border-t border-border first:border-t-0">

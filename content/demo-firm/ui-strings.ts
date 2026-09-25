@@ -5,6 +5,17 @@ import type { UiStrings } from '../schemas';
 
 export const uiStrings: UiStrings = {
   homeLabel: 'Home',
+  skipToContent: 'Salta al contenuto',
+  mainNavLabel: 'Navigazione principale',
+  mobileNavLabel: 'Menu di navigazione',
+  openMenuLabel: 'Apri il menu',
+  closeMenuLabel: 'Chiudi il menu',
+  breadcrumbsLabel: 'Percorso',
+  footerContactHeading: 'Contatti',
+  footerLegalHeading: 'Legale',
+  readingTimeSuffix: ' min',
+  teamSectionTitle: 'Il team',
+  insightsSectionTitle: 'Ultimi articoli',
   contactLabels: {
     phone: 'Telefono',
     email: 'Email',

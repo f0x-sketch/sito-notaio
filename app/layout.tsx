@@ -39,16 +39,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body>
         <a href="#contenuto" className="skip-link type-body-small">
-          Salta al contenuto
+          {ui.skipToContent}
         </a>
         <SiteHeader
           brand={{ name: config.identity.name, logo: config.branding.logo.light }}
           navItems={flattenNavItems(navigation.header.items)}
           cta={navigation.header.cta}
           contact={{ phone: config.contact.phone, email: config.contact.email }}
+          navLabel={ui.mainNavLabel}
+          openMenuLabel={ui.openMenuLabel}
+          closeMenuLabel={ui.closeMenuLabel}
+          mobileNavLabel={ui.mobileNavLabel}
         />
         <main id="contenuto">
-          <Breadcrumbs labels={buildBreadcrumbLabels()} homeLabel={ui.homeLabel} />
+          <Breadcrumbs
+            labels={buildBreadcrumbLabels()}
+            homeLabel={ui.homeLabel}
+            navLabel={ui.breadcrumbsLabel}
+          />
           {children}
         </main>
         <SiteFooter config={config} navigation={navigation} ui={ui} />

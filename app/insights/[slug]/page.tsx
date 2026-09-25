@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.readingTimeMinutes ? (
               <>
                 <span aria-hidden="true">·</span>
-                <span>{post.readingTimeMinutes} min</span>
+                <span>{post.readingTimeMinutes}{ui.readingTimeSuffix}</span>
               </>
             ) : null}
           </p>

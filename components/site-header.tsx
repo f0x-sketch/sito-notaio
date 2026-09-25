@@ -12,6 +12,10 @@ type SiteHeaderProps = {
   navItems: NavLink[];
   cta: NavLink | undefined;
   contact: { phone: string; email: string };
+  navLabel: string;
+  openMenuLabel: string;
+  closeMenuLabel: string;
+  mobileNavLabel: string;
 };
 
 const DRAWER_ID = 'mobile-nav-drawer';
@@ -26,7 +30,16 @@ function isCurrent(href: string, pathname: string): boolean {
  * contact CTA, and the mobile menu toggle. Elevation is applied after ~24px
  * of scroll.
  */
-export function SiteHeader({ brand, navItems, cta, contact }: SiteHeaderProps) {
+export function SiteHeader({
+  brand,
+  navItems,
+  cta,
+  contact,
+  navLabel,
+  openMenuLabel,
+  closeMenuLabel,
+  mobileNavLabel,
+}: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -59,7 +72,7 @@ export function SiteHeader({ brand, navItems, cta, contact }: SiteHeaderProps) {
       <div className="container-page flex h-16 items-center justify-between lg:h-[72px]">
         <BrandLogo name={brand.name} logo={brand.logo} href="/" />
 
-        <nav aria-label="Navigazione principale" className="hidden lg:block">
+        <nav aria-label={navLabel} className="hidden lg:block">
           <ul className="flex items-center gap-8">
             {navItems.map((item) => {
               const current = isCurrent(item.href, pathname);
@@ -93,7 +106,7 @@ export function SiteHeader({ brand, navItems, cta, contact }: SiteHeaderProps) {
           type="button"
           aria-expanded={open}
           aria-controls={DRAWER_ID}
-          aria-label={open ? 'Chiudi il menu' : 'Apri il menu'}
+          aria-label={open ? closeMenuLabel : openMenuLabel}
           onClick={() => (open ? closeDrawer() : setOpen(true))}
           className="-mr-3 flex h-11 w-11 items-center justify-center rounded-xs text-text hover:bg-primary-tint lg:hidden"
         >
@@ -122,6 +135,7 @@ export function SiteHeader({ brand, navItems, cta, contact }: SiteHeaderProps) {
         contact={contact}
         currentPath={pathname}
         panelId={DRAWER_ID}
+        navLabel={mobileNavLabel}
       />
     </header>
   );

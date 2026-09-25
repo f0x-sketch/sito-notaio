@@ -7,6 +7,7 @@ import {
 import { buildPageMetadata } from '@/lib/seo';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
+import { SectionHeader } from '@/components/section-header';
 import { TeamCard } from '@/components/team-card';
 
 const { teamIndex, ctaBand } = getSite().pages;
@@ -29,15 +30,18 @@ export default function TeamIndexPage() {
         {team.length === 0 ? (
           <p className="type-body text-text-muted">{ui.emptyStates.team}</p>
         ) : (
-          <div
-            className={`grid gap-[var(--card-gap)] ${
-              team.length < 3 ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'
-            }`}
-          >
-            {team.map((member) => (
-              <TeamCard key={member.slug} member={member} />
-            ))}
-          </div>
+          <>
+            <SectionHeader title={ui.teamSectionTitle} />
+            <div
+              className={`mt-8 grid gap-[var(--card-gap)] ${
+                team.length < 3 ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
+              {team.map((member) => (
+                <TeamCard key={member.slug} member={member} />
+              ))}
+            </div>
+          </>
         )}
       </section>
 

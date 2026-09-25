@@ -42,7 +42,7 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
           </div>
 
           <div className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
-            <h2 className="type-body-small font-semibold text-text-inverse">Contatti</h2>
+            <h2 className="type-body-small font-semibold text-text-inverse">{ui.footerContactHeading}</h2>
             <address className="type-body-small flex flex-col gap-3 break-words not-italic text-text-inverse-muted">
               <span className="flex flex-col">
                 {addressLines(contact.address).map((line) => (
@@ -111,7 +111,7 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
           ))}
 
           <div className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
-            <h2 className="type-body-small font-semibold text-text-inverse">Legale</h2>
+            <h2 className="type-body-small font-semibold text-text-inverse">{ui.footerLegalHeading}</h2>
             <ul className="flex flex-col gap-2">
               {navigation.footer.legalLinks.map((item) => (
                 <li key={item.href}>

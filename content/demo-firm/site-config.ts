@@ -71,11 +71,9 @@ export const siteConfig: SiteConfig = {
     typography: {
       heading: {
         family: "'Source Serif 4', Georgia, 'Times New Roman', serif",
-        weights: [400, 600, 700],
       },
       body: {
         family: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-        weights: [400, 600],
       },
       baseSizePx: 16,
     },

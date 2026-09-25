@@ -66,10 +66,6 @@ export type NeutralRamp = {
 export type FontDefinition = {
   /** CSS font-family stack. */
   family: string;
-  /** Optional URL the font files are loaded from (e.g. a Google Fonts stylesheet URL). */
-  source?: string;
-  /** Font weights to load. */
-  weights?: number[];
 };
 
 export type TypographyConfig = {
