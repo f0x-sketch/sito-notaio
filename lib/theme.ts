@@ -9,10 +9,11 @@ const SEMANTIC_DEFAULTS = {
 } as const;
 
 /**
- * The boilerplate's self-hosted defaults (`next/font` variables set on <html>
- * by the root layout). When a firm's `TypographyConfig` asks for one of these
- * family names, the stack is rewritten to prefer the self-hosted files while
- * keeping the configured stack as fallback; any other family is used verbatim.
+ * Families the boilerplate can self-host (`next/font` variables set on <html>
+ * by the root layout; the modern-minimal shell loads Inter). When a firm's
+ * `TypographyConfig` asks for one of these family names, the stack is rewritten
+ * to prefer the self-hosted files while keeping the configured stack as
+ * fallback; any other family is used verbatim.
  */
 const SELF_HOSTED_FAMILIES: Record<string, string> = {
   'Source Serif 4': 'var(--font-serif-default, "Source Serif 4")',
@@ -78,8 +79,8 @@ export function themeVariables(config: SiteConfig): CSSProperties {
     '--brand-error': semantic.error,
     '--brand-font-display': resolveFontStack(typography.heading.family),
     '--brand-font-body': resolveFontStack(typography.body.family),
-    '--brand-shadow-1': `0 1px 0 ${neutral.border}, 0 8px 24px ${hexToRgba(neutral.surfaceInverse, 0.06)}`,
-    '--brand-shadow-2': `0 16px 48px ${hexToRgba(neutral.surfaceInverse, 0.16)}`,
+    '--brand-shadow-1': `0 1px 0 ${neutral.border}, 0 10px 28px ${hexToRgba(neutral.surfaceInverse, 0.05)}`,
+    '--brand-shadow-2': `0 24px 48px ${hexToRgba(neutral.surfaceInverse, 0.12)}`,
   };
 
   if (typography.mono) {

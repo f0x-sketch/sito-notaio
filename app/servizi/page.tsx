@@ -34,15 +34,16 @@ export default function ServicesIndexPage() {
           <p className="type-body text-text-muted">{ui.emptyStates.services}</p>
         ) : (
           <div className="flex flex-col gap-16">
-            {categories.map((category) => {
-              const services = getServicesByCategory(category.slug);
-              if (services.length === 0) return null;
-              return (
+            {categories
+              .map((category) => ({ category, services: getServicesByCategory(category.slug) }))
+              .filter(({ services }) => services.length > 0)
+              .map(({ category, services }, index) => (
                 <section key={category.slug} aria-label={category.title}>
                   <SectionHeader
                     title={category.title}
                     intro={category.description}
                     compact
+                    index={index + 1}
                   />
                   <div
                     className={`mt-6 grid gap-[var(--card-gap)] md:grid-cols-2 ${
@@ -54,8 +55,7 @@ export default function ServicesIndexPage() {
                     ))}
                   </div>
                 </section>
-              );
-            })}
+              ))}
           </div>
         )}
       </section>

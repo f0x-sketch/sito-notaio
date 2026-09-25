@@ -45,7 +45,7 @@ export function PostCard({ post, authorName, featured, className }: PostCardProp
           aria-label={post.title}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
         >
-          <span className="group-hover:text-primary group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
+          <span className="group-hover:text-primary group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
             {post.title}
           </span>
         </Link>

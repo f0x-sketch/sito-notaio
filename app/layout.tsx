@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Inter, Source_Serif_4 } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -10,13 +10,9 @@ import { buildMetadata, siteViewport } from '@/lib/seo';
 import { themeVariables } from '@/lib/theme';
 import './globals.css';
 
-/* Self-hosted boilerplate defaults (DESIGN.md §2.2 / PM decision). Firms
- * override the rendered families through `SiteConfig.branding.typography`. */
-const displayFont = Source_Serif_4({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-serif-default',
-  display: 'swap',
-});
+/* Self-hosted modern-minimal default (DESIGN.md §2.2 / PM decision): one
+ * neutral geometric sans across display and body. Firms override the rendered
+ * families through `SiteConfig.branding.typography`. */
 const bodyFont = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-sans-default',
@@ -34,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="it"
-      className={`${displayFont.variable} ${bodyFont.variable}`}
+      className={bodyFont.variable}
       style={themeVariables(config)}
     >
       <body>

@@ -21,9 +21,10 @@ function isCurrent(href: string, pathname: string): boolean {
 }
 
 /**
- * Mobile navigation panel (DESIGN.md §5.2): stacked nav links with hairline
- * dividers, then a contact block. Focus is trapped while open; `Escape`,
- * a link activation, or the toggle closes it and returns focus to the toggle.
+ * Mobile navigation panel (DESIGN.md §5.2): stacked nav links separated by
+ * hairline dividers, then a contact block and the primary CTA. Focus is
+ * trapped while open; `Escape`, a link activation, or the toggle closes it
+ * and returns focus to the toggle.
  */
 export function MobileNavDrawer({
   open,
@@ -78,34 +79,35 @@ export function MobileNavDrawer({
       ref={panelRef}
       inert={!open}
       onKeyDown={handleKeyDown}
-      className={`absolute inset-x-0 top-full z-40 min-h-[calc(100dvh-4rem)] border-b border-border bg-surface-raised shadow-elevation-2 transition-[opacity,transform] duration-150 ease-standard lg:hidden ${
+      className={`absolute inset-x-0 top-full z-40 min-h-[calc(100dvh-3.5rem)] border-b border-border bg-surface shadow-elevation-2 transition-[opacity,transform] duration-150 ease-standard lg:hidden ${
         open
           ? 'pointer-events-auto translate-x-0 opacity-100'
           : 'pointer-events-none invisible translate-x-2 opacity-0'
       }`}
     >
-      <nav aria-label={navLabel} className="flex min-h-[calc(100dvh-4rem)] flex-col">
+      <nav aria-label={navLabel} className="flex min-h-[calc(100dvh-3.5rem)] flex-col">
         <ul className="border-b border-border">
-          {items.map((item, index) => (
-            <li key={item.href} className="border-t border-border first:border-t-0">
-              <Link
-                ref={index === 0 ? firstLinkRef : undefined}
-                href={item.href}
-                aria-current={isCurrent(item.href, currentPath) ? 'page' : undefined}
-                onClick={onClose}
-                className={`type-heading-3 flex min-h-12 items-center px-[var(--page-gutter)] py-3 ${
-                  isCurrent(item.href, currentPath)
-                    ? 'border-b-2 border-primary text-primary'
-                    : 'text-text hover:text-primary hover:underline'
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
+          {items.map((item, index) => {
+            const current = isCurrent(item.href, currentPath);
+            return (
+              <li key={item.href} className="border-t border-border first:border-t-0">
+                <Link
+                  ref={index === 0 ? firstLinkRef : undefined}
+                  href={item.href}
+                  aria-current={current ? 'page' : undefined}
+                  onClick={onClose}
+                  className={`type-heading-2 flex min-h-16 items-center px-[var(--page-gutter)] py-4 ${
+                    current ? 'text-primary' : 'text-text'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
-        <div className="mt-auto flex flex-col gap-3 px-[var(--page-gutter)] py-8">
+        <div className="mt-auto flex flex-col items-start gap-4 px-[var(--page-gutter)] py-8">
           <a
             href={`tel:${contact.phone.replace(/\s+/g, '')}`}
             className="type-body-small tabular-nums rounded-xs text-text underline underline-offset-4 hover:text-primary"
@@ -122,7 +124,7 @@ export function MobileNavDrawer({
             <Link
               href={cta.href}
               onClick={onClose}
-              className="button-primary w-full"
+              className="button-primary mt-2 w-full"
             >
               {cta.label}
             </Link>

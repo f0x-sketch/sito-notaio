@@ -194,7 +194,7 @@ function renderBlock(block: Block, key: string): ReactNode {
     }
     case 'quote':
       return (
-        <blockquote key={key} className="mt-4 border-l-2 border-accent pl-4 text-text-muted">
+        <blockquote key={key} className="mt-4 border-l border-accent pl-6 text-text-muted">
           {parseBlocks(block.text).map((inner, index) => renderBlock(inner, `${key}-q${index}`))}
         </blockquote>
       );

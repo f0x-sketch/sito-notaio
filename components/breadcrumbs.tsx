@@ -67,7 +67,7 @@ export function Breadcrumbs({ labels, homeLabel, navLabel }: BreadcrumbsProps) {
             <li key={`${crumb.href}-${crumb.label}`} className="flex items-center gap-2">
               {index > 0 ? (
                 <span aria-hidden="true" className="text-border-strong">
-                  ›
+                  /
                 </span>
               ) : null}
               {last ? (

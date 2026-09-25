@@ -26,9 +26,9 @@ function isCurrent(href: string, pathname: string): boolean {
 }
 
 /**
- * Sticky site header (DESIGN.md §5.1): brand lockup, single-line desktop nav,
- * contact CTA, and the mobile menu toggle. Elevation is applied after ~24px
- * of scroll.
+ * Compact sticky site header (DESIGN.md §5.1): brand lockup, single-line
+ * desktop nav in tracked labels, contact CTA, and the mobile menu toggle.
+ * A hairline elevation appears after ~24px of scroll.
  */
 export function SiteHeader({
   brand,
@@ -65,11 +65,11 @@ export function SiteHeader({
 
   return (
     <header
-      className={`sticky top-0 z-50 overflow-x-clip border-b border-border bg-surface-raised transition-shadow duration-150 ${
+      className={`sticky top-0 z-50 overflow-x-clip border-b border-border bg-surface transition-shadow duration-150 ${
         scrolled ? 'shadow-elevation-1' : ''
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between lg:h-[72px]">
+      <div className="container-page flex h-14 items-center justify-between lg:h-16">
         <BrandLogo name={brand.name} logo={brand.logo} href="/" />
 
         <nav aria-label={navLabel} className="hidden lg:block">
@@ -81,10 +81,8 @@ export function SiteHeader({
                   <Link
                     href={item.href}
                     aria-current={current ? 'page' : undefined}
-                    className={`type-body-small flex h-[72px] items-center rounded-xs px-1 font-semibold ${
-                      current
-                        ? 'border-b-2 border-primary text-primary'
-                        : 'text-text hover:text-primary hover:underline hover:decoration-2 hover:underline-offset-[6px]'
+                    className={`type-label flex h-16 items-center rounded-xs ${
+                      current ? 'text-primary' : 'text-text-muted hover:text-text'
                     }`}
                   >
                     {item.label}

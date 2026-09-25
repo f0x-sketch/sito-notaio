@@ -4,6 +4,7 @@ import { buildPageMetadata } from '@/lib/seo';
 import { MapPinIcon } from '@/components/icons';
 import { ContactInfoBlock } from '@/components/contact-info-block';
 import { PageHero } from '@/components/page-hero';
+import { SectionHeader } from '@/components/section-header';
 
 const { contact: contactPage } = getSite().pages;
 
@@ -26,7 +27,7 @@ export default function ContactPage() {
       </section>
 
       <section className="container-page section-y" aria-label={ui.mapSectionTitle}>
-        <h2 className="type-heading-2">{ui.mapSectionTitle}</h2>
+        <SectionHeader title={ui.mapSectionTitle} />
         <figure
           aria-label={contactPage.mapPlaceholderAlt}
           className="mt-6 flex aspect-[4/3] w-full flex-col items-center justify-center gap-4 rounded-sm bg-primary-tint p-8 text-center lg:aspect-video lg:max-h-[420px]"
