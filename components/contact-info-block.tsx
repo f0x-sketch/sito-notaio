@@ -18,9 +18,9 @@ type Channel = {
 };
 
 /**
- * ContactInfoBlock (DESIGN.md §5.10): grid of channels from
- * `SiteConfig.contact` only. A channel that is not configured is omitted
- * entirely — never rendered as an "N/D" placeholder.
+ * ContactInfoBlock — classic institutional.
+ * Formal grid of channels with serif labels and classical rhythm.
+ * A channel that is not configured is omitted entirely.
  */
 export function ContactInfoBlock({ contact, labels }: ContactInfoBlockProps) {
   const channels: Channel[] = [];
@@ -87,12 +87,12 @@ export function ContactInfoBlock({ contact, labels }: ContactInfoBlockProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
       {channels.map((channel) => {
-        const rowClassName = `flex min-h-16 flex-col justify-center gap-1 border-t border-border py-5 md:pr-8 ${
+        const rowClassName = `flex min-h-16 flex-col justify-center gap-1.5 border-t border-border py-5 md:pr-8 ${
           channel.href ? 'group rounded-xs hover:bg-primary-tint' : ''
         }`;
         const body = (
           <>
-            <span className="type-caption text-text-muted">{channel.label}</span>
+            <span className="type-label text-accent">{channel.label}</span>
             <span
               className={`break-words ${
                 channel.emphasis === 'strong'

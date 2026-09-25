@@ -20,8 +20,9 @@ const inverseLinkClassName =
   'rounded-xs text-text-inverse-muted underline-offset-4 hover:text-text-inverse hover:underline';
 
 /**
- * Site footer (DESIGN.md §5.3): brand, contact channels, configured link
- * columns, legal data and social links on the inverse surface.
+ * Site footer — classic institutional.
+ * Ornamental top rule, formal grid with serif headings,
+ * classical legal data and social links on the inverse surface.
  */
 export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
   const { identity, branding, contact, legal, social } = config;
@@ -30,8 +31,12 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
   return (
     <footer className="surface-inverse bg-surface-inverse pb-8 pt-[var(--section-y)] text-text-inverse">
       <div className="container-page">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col gap-4 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
+        <div className="ornament-divider mb-12" aria-hidden="true">
+          <span className="ornament-divider-diamond" />
+        </div>
+
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="flex flex-col gap-5">
             <BrandLogo
               name={identity.name}
               logo={branding.logo.dark}
@@ -41,8 +46,8 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
             <p className="type-body-small text-text-inverse-muted">{identity.description}</p>
           </div>
 
-          <div className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
-            <h2 className="type-body-small font-semibold text-text-inverse">{ui.footerContactHeading}</h2>
+          <div className="flex flex-col gap-4">
+            <h2 className="type-label text-text-inverse">{ui.footerContactHeading}</h2>
             <address className="type-body-small flex flex-col gap-3 break-words not-italic text-text-inverse-muted">
               <span className="flex flex-col">
                 {addressLines(contact.address).map((line) => (
@@ -80,9 +85,9 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
             <nav
               key={column.title}
               aria-label={column.title}
-              className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0"
+              className="flex flex-col gap-4"
             >
-              <h2 className="type-body-small font-semibold text-text-inverse">{column.title}</h2>
+              <h2 className="type-label text-text-inverse">{column.title}</h2>
               <ul className="flex flex-col gap-2">
                 {column.items.map((item) => (
                   <li key={item.href}>
@@ -110,8 +115,8 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
             </nav>
           ))}
 
-          <div className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
-            <h2 className="type-body-small font-semibold text-text-inverse">{ui.footerLegalHeading}</h2>
+          <div className="flex flex-col gap-4">
+            <h2 className="type-label text-text-inverse">{ui.footerLegalHeading}</h2>
             <ul className="flex flex-col gap-2">
               {navigation.footer.legalLinks.map((item) => (
                 <li key={item.href}>
@@ -153,9 +158,11 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
           </div>
         </div>
 
-        <p className="type-caption mt-12 border-t border-border pt-8 text-text-inverse-muted">
-          © {year} {identity.legalName} · {ui.vatLabel} {legal.vatNumber}
-        </p>
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="type-caption text-center tabular-nums text-text-inverse-muted">
+            © {year} {identity.legalName} · {ui.vatLabel} {legal.vatNumber}
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -58,17 +58,17 @@ export default async function TeamMemberPage({ params }: Props) {
             />
           </div>
           <div className="relative lg:col-span-7 lg:col-start-6 lg:pl-8">
-            <span className="margin-rule" aria-hidden="true" />
+            <span className="ornamental-rule ornamental-rule-short mb-5" aria-hidden="true" />
             <h1 className="type-title hyphens-auto">{member.name}</h1>
-            <p className="type-caption mt-2 text-text-muted">{memberCaptionLine(member)}</p>
+            <p className="type-caption mt-2 text-accent">{memberCaptionLine(member)}</p>
             {member.specializations.length > 0 ? (
               <p className="type-caption mt-3 text-text-muted">
                 {member.specializations.join(' · ')}
               </p>
             ) : null}
-            {lede ? <p className="type-body mt-4 max-w-[45ch] text-text-muted">{lede}</p> : null}
+            {lede ? <p className="type-body mt-4 max-w-[48ch] text-text-muted">{lede}</p> : null}
             {member.email ? (
-              <p className="mt-4">
+              <p className="mt-5">
                 <a href={`mailto:${member.email}`} className="text-link type-body-small">
                   {member.email}
                 </a>
@@ -82,7 +82,7 @@ export default async function TeamMemberPage({ params }: Props) {
         <section className="container-page section-y">
           <div className="lg:grid lg:grid-cols-12">
             <div className="lg:col-span-7 lg:col-start-2">
-              <Prose markdown={rest} />
+              <Prose markdown={rest} dropCap />
             </div>
           </div>
         </section>

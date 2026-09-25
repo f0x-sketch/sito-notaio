@@ -9,26 +9,27 @@ type ServiceCardProps = {
 };
 
 /**
- * ServiceCard (DESIGN.md §5.7): the whole card is one link to the service
- * detail page. States per §4; one interactive target per card.
+ * ServiceCard — classic institutional card.
+ * Sharp-cornered bordered panel, serif heading, formal rhythm.
+ * Whole card is one link to the service detail page.
  */
 export function ServiceCard({ service, category, className }: ServiceCardProps) {
   return (
     <article
-      className={`group relative flex h-full flex-col gap-2 rounded-sm border border-border bg-surface-raised p-6 transition-colors duration-150 hover:border-border-strong has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus ${
+      className={`group relative flex h-full flex-col gap-3 border border-border bg-surface-raised p-7 transition-colors duration-150 hover:border-border-strong has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus ${
         className ?? ''
       }`}
     >
       {service.icon ? (
-        <ServiceIcon name={service.icon} className="h-6 w-6 text-primary" />
+        <ServiceIcon name={service.icon} className="h-6 w-6 text-accent" />
       ) : null}
-      {category ? <p className="type-caption text-text-muted">{category.title}</p> : null}
+      {category ? <p className="type-label text-text-muted">{category.title}</p> : null}
       <h3 className="type-heading-3 hyphens-auto">
         <Link
           href={`/servizi/${service.slug}`}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
         >
-          <span className="group-hover:text-primary group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
+          <span className="group-hover:text-primary group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
             {service.title}
           </span>
         </Link>
@@ -38,7 +39,7 @@ export function ServiceCard({ service, category, className }: ServiceCardProps) 
       ) : null}
       <span
         aria-hidden="true"
-        className="mt-auto self-end text-primary transition-transform duration-150 group-hover:translate-x-1"
+        className="mt-auto self-end text-accent transition-transform duration-150 group-hover:translate-x-1"
       >
         →
       </span>

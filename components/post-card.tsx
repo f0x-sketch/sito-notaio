@@ -13,13 +13,14 @@ type PostCardProps = {
 };
 
 /**
- * PostCard (DESIGN.md §5.9): optional 16:9 cover, meta, clamped title and
- * excerpt, author line. Whole card is one link; tags and meta are not links.
+ * PostCard — classic institutional card.
+ * Sharp-cornered bordered panel, serif heading, formal rhythm.
+ * Whole card is one link; tags and meta are not links.
  */
 export function PostCard({ post, authorName, featured, className }: PostCardProps) {
   return (
     <article
-      className={`group relative flex h-full flex-col gap-3 rounded-sm border border-border bg-surface-raised p-6 transition-colors duration-150 hover:border-border-strong has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus ${
+      className={`group relative flex h-full flex-col gap-3 border border-border bg-surface-raised p-7 transition-colors duration-150 hover:border-border-strong has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus ${
         className ?? ''
       }`}
     >
@@ -45,7 +46,7 @@ export function PostCard({ post, authorName, featured, className }: PostCardProp
           aria-label={post.title}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
         >
-          <span className="group-hover:text-primary group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
+          <span className="group-hover:text-primary group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
             {post.title}
           </span>
         </Link>
@@ -54,7 +55,7 @@ export function PostCard({ post, authorName, featured, className }: PostCardProp
       {authorName ? <p className="type-caption text-text-muted">{authorName}</p> : null}
       <span
         aria-hidden="true"
-        className="mt-auto self-end text-primary transition-transform duration-150 group-hover:translate-x-1"
+        className="mt-auto self-end text-accent transition-transform duration-150 group-hover:translate-x-1"
       >
         →
       </span>

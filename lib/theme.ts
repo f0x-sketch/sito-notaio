@@ -15,8 +15,8 @@ const SEMANTIC_DEFAULTS = {
  * keeping the configured stack as fallback; any other family is used verbatim.
  */
 const SELF_HOSTED_FAMILIES: Record<string, string> = {
-  'Source Serif 4': 'var(--font-serif-default, "Source Serif 4")',
-  Inter: 'var(--font-sans-default, "Inter")',
+  'Playfair Display': 'var(--font-display-default, "Playfair Display")',
+  'Source Serif 4': 'var(--font-body-default, "Source Serif 4")',
 };
 
 function resolveFontStack(stack: string): string {

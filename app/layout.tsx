@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Inter, Source_Serif_4 } from 'next/font/google';
+import { Playfair_Display, Source_Serif_4 } from 'next/font/google';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -12,14 +12,14 @@ import './globals.css';
 
 /* Self-hosted boilerplate defaults (DESIGN.md §2.2 / PM decision). Firms
  * override the rendered families through `SiteConfig.branding.typography`. */
-const displayFont = Source_Serif_4({
+const displayFont = Playfair_Display({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-serif-default',
+  variable: '--font-display-default',
   display: 'swap',
 });
-const bodyFont = Inter({
+const bodyFont = Source_Serif_4({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-sans-default',
+  variable: '--font-body-default',
   display: 'swap',
 });
 

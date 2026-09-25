@@ -51,17 +51,17 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <header className="container-page py-12 lg:py-[var(--section-y)]">
-        <div className="relative lg:pl-8">
+        <div className="flex flex-col items-center text-center">
           {post.tags.length > 0 ? (
-            <p className="type-caption flex flex-wrap items-center gap-x-2 text-text-muted">
+            <p className="type-label flex flex-wrap items-center justify-center gap-x-2 text-accent">
               {post.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </p>
           ) : null}
-          <span className="margin-rule" aria-hidden="true" />
-          <h1 className="type-title hyphens-auto">{post.title}</h1>
-          <p className="type-caption mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 tabular-nums text-text-muted">
+          <span className="ornamental-rule ornamental-rule-short mt-4" aria-hidden="true" />
+          <h1 className="type-title hyphens-auto max-w-[24ch] mt-6">{post.title}</h1>
+          <p className="type-caption mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 tabular-nums text-text-muted">
             {author ? (
               <Link href={`/professionisti/${author.slug}`} className="text-link">
                 {author.name}
@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="container-page section-y">
         <div className="lg:grid lg:grid-cols-12">
           <div className="lg:col-span-7 lg:col-start-2">
-            <Prose markdown={post.body} />
+            <Prose markdown={post.body} dropCap />
           </div>
         </div>
       </section>

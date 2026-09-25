@@ -10,9 +10,9 @@ type SealMonogramProps = {
 };
 
 /**
- * Seal monogram (DESIGN.md §5.11): the brand fallback for missing media —
- * never a logo fallback. Decorative unless `label` is provided (e.g. when it
- * stands in for a person's photo).
+ * Seal monogram — classic institutional.
+ * Prominent circular seal with classical serif initials.
+ * The brand fallback for missing media — never a logo fallback.
  */
 export function SealMonogram({
   initials,
@@ -22,15 +22,15 @@ export function SealMonogram({
 }: SealMonogramProps) {
   const toneClassName =
     tone === 'inverse'
-      ? 'bg-surface-inverse text-text-inverse'
-      : 'bg-primary-tint text-primary';
+      ? 'bg-surface-inverse text-text-inverse border-text-inverse-muted'
+      : 'bg-primary-tint text-primary border-border-strong';
 
   return (
     <div
       {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}
-      className={`flex items-center justify-center rounded-full ${toneClassName} ${className ?? 'h-16 w-16'}`}
+      className={`flex items-center justify-center rounded-full border-2 ${toneClassName} ${className ?? 'h-16 w-16'}`}
     >
-      <span className="type-heading-3 select-none">{initials ?? '—'}</span>
+      <span className="type-heading-3 select-none tracking-wider">{initials ?? '—'}</span>
     </div>
   );
 }

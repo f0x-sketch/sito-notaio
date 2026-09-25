@@ -5,20 +5,29 @@ type PageHeroProps = {
 };
 
 /**
- * PageHero variant (DESIGN.md §5.5 B): eyebrow + `title` H1 + deck + optional
- * meta line, left-aligned with the margin rule. No image.
+ * PageHero — classic institutional centered header.
+ * Symmetric formal layout with ornamental rules above and below,
+ * centered eyebrow, title, deck, and optional meta.
  */
 export function PageHero({ hero }: PageHeroProps) {
   return (
-    <header className="container-page py-12 lg:py-[var(--section-y)]">
-      <div className="relative lg:pl-8">
-        {hero.eyebrow ? (
-          <p className="type-label mb-3 text-text-muted">{hero.eyebrow}</p>
-        ) : null}
-        <span className="margin-rule" aria-hidden="true" />
-        <h1 className="type-title hyphens-auto max-w-[20ch]">{hero.title}</h1>
-        <p className="type-body mt-4 max-w-[45ch] text-text-muted">{hero.subtitle}</p>
-        {hero.meta ? <p className="type-caption mt-4 tabular-nums text-text-muted">{hero.meta}</p> : null}
+    <header className="container-page flex flex-col items-center py-16 text-center lg:py-[var(--section-y)]">
+      {hero.eyebrow ? (
+        <p className="type-label text-accent">{hero.eyebrow}</p>
+      ) : null}
+
+      <span className="ornamental-rule ornamental-rule-short mt-4" aria-hidden="true" />
+
+      <h1 className="type-title hyphens-auto max-w-[24ch] mt-6">{hero.title}</h1>
+
+      <p className="type-body mt-4 max-w-[52ch] text-text-muted">{hero.subtitle}</p>
+
+      {hero.meta ? (
+        <p className="type-caption mt-4 tabular-nums text-text-muted">{hero.meta}</p>
+      ) : null}
+
+      <div className="ornament-divider mt-8" aria-hidden="true">
+        <span className="ornament-divider-diamond" />
       </div>
     </header>
   );

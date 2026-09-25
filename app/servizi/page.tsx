@@ -33,7 +33,7 @@ export default function ServicesIndexPage() {
         {!hasServices ? (
           <p className="type-body text-text-muted">{ui.emptyStates.services}</p>
         ) : (
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-20">
             {categories.map((category) => {
               const services = getServicesByCategory(category.slug);
               if (services.length === 0) return null;
@@ -42,7 +42,6 @@ export default function ServicesIndexPage() {
                   <SectionHeader
                     title={category.title}
                     intro={category.description}
-                    compact
                   />
                   <div
                     className={`mt-6 grid gap-[var(--card-gap)] md:grid-cols-2 ${

@@ -42,10 +42,8 @@ function buildCrumbs(
 }
 
 /**
- * Route-driven breadcrumbs (DESIGN.md §5.4): labelled `nav`, `›` separators,
- * last item current and unlinked, hidden on the homepage and on unknown paths
- * (the prerendered 404 renders at `/_not-found` server-side, so breadcrumbs
- * must stay absent for any unrecognised route to avoid a hydration mismatch).
+ * Route-driven breadcrumbs — classic institutional.
+ * Centered, serif caption with `·` separators and classical rhythm.
  */
 export function Breadcrumbs({ labels, homeLabel, navLabel }: BreadcrumbsProps) {
   const pathname = usePathname();
@@ -59,15 +57,15 @@ export function Breadcrumbs({ labels, homeLabel, navLabel }: BreadcrumbsProps) {
   }
 
   return (
-    <nav aria-label={navLabel} className="container-page pt-6">
-      <ol className="type-caption flex flex-wrap items-center gap-x-2 gap-y-1 text-text-muted">
+    <nav aria-label={navLabel} className="container-page pt-8">
+      <ol className="type-caption flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-text-muted">
         {crumbs.map((crumb, index) => {
           const last = index === crumbs.length - 1;
           return (
             <li key={`${crumb.href}-${crumb.label}`} className="flex items-center gap-2">
               {index > 0 ? (
                 <span aria-hidden="true" className="text-border-strong">
-                  ›
+                  ·
                 </span>
               ) : null}
               {last ? (

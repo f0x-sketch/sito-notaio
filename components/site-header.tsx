@@ -26,9 +26,9 @@ function isCurrent(href: string, pathname: string): boolean {
 }
 
 /**
- * Sticky site header (DESIGN.md §5.1): brand lockup, single-line desktop nav,
- * contact CTA, and the mobile menu toggle. Elevation is applied after ~24px
- * of scroll.
+ * Sticky site header — classic institutional.
+ * Bronze accent line at top, serif wordmark, formal navigation with
+ * classical underline for current page.
  */
 export function SiteHeader({
   brand,
@@ -65,15 +65,20 @@ export function SiteHeader({
 
   return (
     <header
-      className={`sticky top-0 z-50 overflow-x-clip border-b border-border bg-surface-raised transition-shadow duration-150 ${
+      className={`sticky top-0 z-50 overflow-x-clip bg-surface-raised transition-shadow duration-150 ${
         scrolled ? 'shadow-elevation-1' : ''
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between lg:h-[72px]">
+      <div className="top-accent-line" aria-hidden="true" />
+      <div
+        className="border-b border-border"
+        aria-hidden="true"
+      />
+      <div className="container-page flex h-18 items-center justify-between lg:h-[80px]">
         <BrandLogo name={brand.name} logo={brand.logo} href="/" />
 
         <nav aria-label={navLabel} className="hidden lg:block">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-9">
             {navItems.map((item) => {
               const current = isCurrent(item.href, pathname);
               return (
@@ -81,10 +86,10 @@ export function SiteHeader({
                   <Link
                     href={item.href}
                     aria-current={current ? 'page' : undefined}
-                    className={`type-body-small flex h-[72px] items-center rounded-xs px-1 font-semibold ${
+                    className={`type-body-small flex h-[80px] items-center px-1 ${
                       current
-                        ? 'border-b-2 border-primary text-primary'
-                        : 'text-text hover:text-primary hover:underline hover:decoration-2 hover:underline-offset-[6px]'
+                        ? 'border-b-2 border-accent text-primary font-semibold'
+                        : 'text-text hover:text-primary hover:underline hover:decoration-1 hover:underline-offset-[6px]'
                     }`}
                   >
                     {item.label}

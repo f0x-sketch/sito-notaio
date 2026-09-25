@@ -24,6 +24,16 @@ const { pages } = getSite();
 
 export const metadata = buildMetadata(pages.home.seo);
 
+function SectionDivider() {
+  return (
+    <div className="container-page">
+      <div className="ornament-divider" aria-hidden="true">
+        <span className="ornament-divider-diamond" />
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const config = getSiteConfig();
   const ui = getUiStrings();
@@ -46,10 +56,12 @@ export default function HomePage() {
         }}
       />
 
+      <SectionDivider />
+
       <section className="container-page section-y" aria-label={home.servicesTeaser.title}>
         <SectionHeader title={home.servicesTeaser.title} intro={home.servicesTeaser.intro} />
         {featuredServices.length > 0 ? (
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2">
+          <div className="mt-10 grid gap-[var(--card-gap)] md:grid-cols-2">
             {featuredServices.map((service) => (
               <ServiceCard
                 key={service.slug}
@@ -61,13 +73,17 @@ export default function HomePage() {
         ) : (
           <p className="type-body mt-4 text-text-muted">{ui.emptyStates.services}</p>
         )}
-        <Link href={home.servicesTeaser.cta.href} className="text-link type-body-small font-semibold mt-8 inline-block">
-          {home.servicesTeaser.cta.label}
-        </Link>
+        <div className="mt-8 text-center">
+          <Link href={home.servicesTeaser.cta.href} className="text-link type-body-small font-semibold">
+            {home.servicesTeaser.cta.label}
+          </Link>
+        </div>
       </section>
 
+      <SectionDivider />
+
       <section className="container-page section-y" aria-label={home.studioTeaser.title}>
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-12">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-5">
             <MediaFrame
               image={home.studioTeaser.image}
@@ -76,8 +92,9 @@ export default function HomePage() {
             />
           </div>
           <div className="flex flex-col items-start lg:col-span-6 lg:col-start-7">
+            <span className="ornamental-rule ornamental-rule-short mb-5" aria-hidden="true" />
             <h2 className="type-heading-2 hyphens-auto">{home.studioTeaser.title}</h2>
-            <Prose markdown={home.studioTeaser.body} className="mt-4" />
+            <Prose markdown={home.studioTeaser.body} className="mt-4" dropCap />
             {home.studioTeaser.note ? (
               <p className="type-caption mt-4 tabular-nums text-text-muted">
                 {home.studioTeaser.note}
@@ -85,7 +102,7 @@ export default function HomePage() {
             ) : null}
             <Link
               href={home.studioTeaser.cta.href}
-              className="text-link type-body-small font-semibold mt-4"
+              className="text-link type-body-small font-semibold mt-5"
             >
               {home.studioTeaser.cta.label}
             </Link>
@@ -102,7 +119,7 @@ export default function HomePage() {
       <section className="container-page section-y" aria-label={home.teamTeaser.title}>
         <SectionHeader title={home.teamTeaser.title} intro={home.teamTeaser.intro} />
         {team.length > 0 ? (
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-[var(--card-gap)] md:grid-cols-2 lg:grid-cols-3">
             {team.map((member) => (
               <TeamCard key={member.slug} member={member} />
             ))}
@@ -110,18 +127,22 @@ export default function HomePage() {
         ) : (
           <p className="type-body mt-4 text-text-muted">{ui.emptyStates.team}</p>
         )}
-        <Link
-          href={home.teamTeaser.cta.href}
-          className="text-link type-body-small font-semibold mt-8 inline-block"
-        >
-          {home.teamTeaser.cta.label}
-        </Link>
+        <div className="mt-8 text-center">
+          <Link
+            href={home.teamTeaser.cta.href}
+            className="text-link type-body-small font-semibold"
+          >
+            {home.teamTeaser.cta.label}
+          </Link>
+        </div>
       </section>
+
+      <SectionDivider />
 
       <section className="container-page section-y" aria-label={home.insightsTeaser.title}>
         <SectionHeader title={home.insightsTeaser.title} intro={home.insightsTeaser.intro} />
         {posts.length > 0 ? (
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-[var(--card-gap)] md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <PostCard
                 key={post.slug}
@@ -133,12 +154,14 @@ export default function HomePage() {
         ) : (
           <p className="type-body mt-4 text-text-muted">{ui.emptyStates.posts}</p>
         )}
-        <Link
-          href={home.insightsTeaser.cta.href}
-          className="text-link type-body-small font-semibold mt-8 inline-block"
-        >
-          {home.insightsTeaser.cta.label}
-        </Link>
+        <div className="mt-8 text-center">
+          <Link
+            href={home.insightsTeaser.cta.href}
+            className="text-link type-body-small font-semibold"
+          >
+            {home.insightsTeaser.cta.label}
+          </Link>
+        </div>
       </section>
 
       <CtaBand content={ctaBand} phone={config.contact.phone} />

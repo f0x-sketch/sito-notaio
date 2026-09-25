@@ -155,7 +155,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
   return nodes;
 }
 
-function renderBlock(block: Block, key: string): ReactNode {
+function renderBlock(block: Block, key: string, dropCap?: boolean): ReactNode {
   switch (block.type) {
     case 'heading': {
       const id = slugify(block.text) || undefined;
@@ -172,7 +172,7 @@ function renderBlock(block: Block, key: string): ReactNode {
     }
     case 'paragraph':
       return (
-        <p key={key} className="type-body mt-4 first:mt-0">
+        <p key={key} className={`type-body mt-4 first:mt-0 ${dropCap ? 'drop-cap' : ''}`}>
           {renderInline(block.text, key)}
         </p>
       );
@@ -206,6 +206,8 @@ function renderBlock(block: Block, key: string): ReactNode {
 type ProseProps = {
   markdown: Markdown;
   className?: string;
+  /** Apply a classic drop cap to the first paragraph. */
+  dropCap?: boolean;
 };
 
 /**
@@ -213,10 +215,14 @@ type ProseProps = {
  * of the content layer (headings, paragraphs, lists, blockquotes, rules, links,
  * emphasis, code) becomes fully typed React nodes — no raw HTML.
  */
-export function Prose({ markdown, className }: ProseProps) {
+export function Prose({ markdown, className, dropCap }: ProseProps) {
+  const blocks = parseBlocks(markdown);
   return (
     <div className={`max-w-[var(--prose-measure)] ${className ?? ''}`}>
-      {parseBlocks(markdown).map((block, index) => renderBlock(block, `b${index}`))}
+      {blocks.map((block, index) => {
+        const isfirstParagraph = dropCap && index === 0 && block.type === 'paragraph';
+        return renderBlock(block, `b${index}`, isfirstParagraph);
+      })}
     </div>
   );
 }

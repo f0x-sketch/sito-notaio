@@ -23,9 +23,9 @@ export default function StudioPage() {
       <section className="container-page section-y">
         <div className="lg:grid lg:grid-cols-12">
           <div className="lg:col-span-7 lg:col-start-2">
-            <Prose markdown={studio.story} />
+            <Prose markdown={studio.story} dropCap />
             {studio.timeline && studio.timeline.length > 0 ? (
-              <ol className="mt-10 border-t border-border">
+              <ol className="mt-10 border-t border-border-strong">
                 {studio.timeline.map((entry) => (
                   <li
                     key={`${entry.year}-${entry.title}`}
@@ -58,7 +58,7 @@ export default function StudioPage() {
               sizes="100vw"
             />
             {studio.sede.caption ? (
-              <figcaption className="type-caption mt-2 text-text-muted">
+              <figcaption className="type-caption mt-3 text-center text-text-muted">
                 {studio.sede.caption}
               </figcaption>
             ) : null}

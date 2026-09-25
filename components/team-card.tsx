@@ -14,13 +14,14 @@ export function memberCaptionLine(member: TeamMember): string {
 }
 
 /**
- * TeamCard (DESIGN.md §5.8): photo 4:5 card on desktop; horizontal row with a
- * 88×110 photo and hairline divider on mobile. Whole card is one link (§4).
+ * TeamCard — classic institutional card.
+ * Sharp-cornered bordered panel with formal rhythm.
+ * Photo 4:5 on desktop; horizontal row on mobile.
  */
 export function TeamCard({ member, className }: TeamCardProps) {
   return (
     <article
-      className={`group relative flex items-start gap-4 border-b border-border pb-4 md:items-stretch md:flex-col md:gap-3 md:rounded-sm md:border md:border-border md:bg-surface-raised md:p-4 md:pb-4 md:transition-colors md:duration-150 md:hover:border-border-strong md:has-[:focus-visible]:outline-2 md:has-[:focus-visible]:outline-offset-2 md:has-[:focus-visible]:outline-focus ${
+      className={`group relative flex items-start gap-5 border-b border-border pb-5 md:items-stretch md:flex-col md:gap-4 md:border md:border-border md:bg-surface-raised md:p-5 md:pb-5 md:transition-colors md:duration-150 md:hover:border-border-strong md:has-[:focus-visible]:outline-2 md:has-[:focus-visible]:outline-offset-2 md:has-[:focus-visible]:outline-focus ${
         className ?? ''
       }`}
     >
@@ -32,13 +33,13 @@ export function TeamCard({ member, className }: TeamCardProps) {
           sizes="(min-width: 768px) 30vw, 88px"
         />
       </div>
-      <div className="flex min-w-0 flex-col gap-1">
+      <div className="flex min-w-0 flex-col gap-1.5">
         <h3 className="type-heading-3 hyphens-auto">
           <Link
             href={`/professionisti/${member.slug}`}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
           >
-            <span className="group-hover:text-primary group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
+            <span className="group-hover:text-primary group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
               {member.name}
             </span>
           </Link>
@@ -51,7 +52,7 @@ export function TeamCard({ member, className }: TeamCardProps) {
         ) : null}
         <span
           aria-hidden="true"
-          className="mt-auto hidden self-end text-primary transition-transform duration-150 group-hover:translate-x-1 md:block"
+          className="mt-auto hidden self-end text-accent transition-transform duration-150 group-hover:translate-x-1 md:block"
         >
           →
         </span>

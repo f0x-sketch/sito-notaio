@@ -26,10 +26,10 @@ export default function ContactPage() {
       </section>
 
       <section className="container-page section-y" aria-label={ui.mapSectionTitle}>
-        <h2 className="type-heading-2">{ui.mapSectionTitle}</h2>
+        <h2 className="type-heading-2 text-center">{ui.mapSectionTitle}</h2>
         <figure
           aria-label={contactPage.mapPlaceholderAlt}
-          className="mt-6 flex aspect-[4/3] w-full flex-col items-center justify-center gap-4 rounded-sm bg-primary-tint p-8 text-center lg:aspect-video lg:max-h-[420px]"
+          className="mt-8 flex aspect-[4/3] w-full flex-col items-center justify-center gap-5 border border-border-strong bg-primary-tint p-8 text-center lg:aspect-video lg:max-h-[420px]"
         >
           <MapPinIcon className="h-10 w-10 text-primary" />
           <address className="type-body-small not-italic">

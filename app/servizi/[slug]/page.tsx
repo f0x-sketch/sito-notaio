@@ -57,7 +57,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const stickyRail = service.highlights.length >= 6;
 
   const highlightsBox = (
-    <div className="rounded-sm border border-border bg-surface-raised p-6">
+    <div className="border border-border-strong bg-surface-raised p-7">
       <h2 className="type-heading-3">{ui.highlightsTitle}</h2>
       <ul className="mt-4 border-t border-border">
         {service.highlights.map((highlight) => (
@@ -78,18 +78,21 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <>
       <header className="container-page py-12 lg:py-[var(--section-y)]">
-        <div className="relative lg:pl-8">
-          {category ? <p className="type-caption text-text-muted">{category.title}</p> : null}
-          <span className="margin-rule" aria-hidden="true" />
-          <h1 className="type-title hyphens-auto max-w-[20ch]">{service.title}</h1>
-          <p className="type-body mt-4 max-w-[45ch] text-text-muted">{service.summary}</p>
+        <div className="flex flex-col items-center text-center">
+          {category ? <p className="type-label text-accent">{category.title}</p> : null}
+          <span className="ornamental-rule ornamental-rule-short mt-4" aria-hidden="true" />
+          <h1 className="type-title hyphens-auto max-w-[24ch] mt-6">{service.title}</h1>
+          <p className="type-body mt-4 max-w-[52ch] text-text-muted">{service.summary}</p>
+          <div className="ornament-divider mt-8" aria-hidden="true">
+            <span className="ornament-divider-diamond" />
+          </div>
         </div>
       </header>
 
       <section className="container-page section-y">
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-7 lg:col-start-2">
-            <Prose markdown={service.body} />
+            <Prose markdown={service.body} dropCap />
             {!stickyRail ? <div className="mt-10">{highlightsBox}</div> : null}
           </div>
           {stickyRail ? (
