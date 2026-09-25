@@ -26,13 +26,14 @@ export default function ContactPage() {
       </section>
 
       <section className="container-page section-y" aria-label={ui.mapSectionTitle}>
-        <h2 className="type-heading-2">{ui.mapSectionTitle}</h2>
+        <span className="section-rule" aria-hidden="true" />
+        <h2 className="type-heading-2 mt-5">{ui.mapSectionTitle}</h2>
         <figure
           aria-label={contactPage.mapPlaceholderAlt}
-          className="mt-6 flex aspect-[4/3] w-full flex-col items-center justify-center gap-4 rounded-sm bg-primary-tint p-8 text-center lg:aspect-video lg:max-h-[420px]"
+          className="mt-8 flex aspect-[4/3] w-full flex-col items-center justify-center gap-5 bg-primary-tint p-10 text-center lg:aspect-video lg:max-h-[440px]"
         >
-          <MapPinIcon className="h-10 w-10 text-primary" />
-          <address className="type-body-small not-italic">
+          <MapPinIcon className="h-12 w-12 text-primary" />
+          <address className="type-body not-italic">
             {addressLines(contact.address).map((line) => (
               <span key={line} className="block">
                 {line}
@@ -51,7 +52,7 @@ export default function ContactPage() {
             </a>
           ) : null}
         </figure>
-        <p className="type-caption mt-4 tabular-nums text-text-muted">
+        <p className="type-caption mt-5 tabular-nums text-text-muted">
           {ui.vatLabel} {legal.vatNumber}
           {legal.fiscalCode ? (
             <>

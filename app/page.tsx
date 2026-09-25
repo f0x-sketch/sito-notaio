@@ -49,45 +49,52 @@ export default function HomePage() {
       <section className="container-page section-y" aria-label={home.servicesTeaser.title}>
         <SectionHeader title={home.servicesTeaser.title} intro={home.servicesTeaser.intro} />
         {featuredServices.length > 0 ? (
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2">
-            {featuredServices.map((service) => (
-              <ServiceCard
-                key={service.slug}
-                service={service}
-                category={categoryBySlug.get(service.category)}
-              />
+          <ol className="mt-10">
+            {featuredServices.map((service, index) => (
+              <li key={service.slug}>
+                <ServiceCard
+                  service={service}
+                  category={categoryBySlug.get(service.category)}
+                  index={index + 1}
+                />
+              </li>
             ))}
-          </div>
+            <li aria-hidden="true" className="border-t border-border" />
+          </ol>
         ) : (
-          <p className="type-body mt-4 text-text-muted">{ui.emptyStates.services}</p>
+          <p className="type-body mt-5 text-text-muted">{ui.emptyStates.services}</p>
         )}
-        <Link href={home.servicesTeaser.cta.href} className="text-link type-body-small font-semibold mt-8 inline-block">
-          {home.servicesTeaser.cta.label}
+        <Link
+          href={home.servicesTeaser.cta.href}
+          className="text-link type-body-small font-semibold mt-10 inline-block"
+        >
+          {home.servicesTeaser.cta.label} →
         </Link>
       </section>
 
       <section className="container-page section-y" aria-label={home.studioTeaser.title}>
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-12">
-          <div className="lg:col-span-5">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
+          <div className="lg:col-span-6">
             <MediaFrame
               image={home.studioTeaser.image}
               aspectClassName="aspect-[4/3]"
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              sizes="(min-width: 1024px) 45vw, 100vw"
             />
           </div>
-          <div className="flex flex-col items-start lg:col-span-6 lg:col-start-7">
-            <h2 className="type-heading-2 hyphens-auto">{home.studioTeaser.title}</h2>
-            <Prose markdown={home.studioTeaser.body} className="mt-4" />
+          <div className="flex flex-col items-start lg:col-span-5 lg:col-start-8 lg:pt-16">
+            <span className="section-rule" aria-hidden="true" />
+            <h2 className="type-heading-2 hyphens-auto mt-5">{home.studioTeaser.title}</h2>
+            <Prose markdown={home.studioTeaser.body} className="mt-5" />
             {home.studioTeaser.note ? (
-              <p className="type-caption mt-4 tabular-nums text-text-muted">
+              <p className="type-label mt-5 tabular-nums text-primary">
                 {home.studioTeaser.note}
               </p>
             ) : null}
             <Link
               href={home.studioTeaser.cta.href}
-              className="text-link type-body-small font-semibold mt-4"
+              className="text-link type-body-small font-semibold mt-6"
             >
-              {home.studioTeaser.cta.label}
+              {home.studioTeaser.cta.label} →
             </Link>
           </div>
         </div>
@@ -102,42 +109,45 @@ export default function HomePage() {
       <section className="container-page section-y" aria-label={home.teamTeaser.title}>
         <SectionHeader title={home.teamTeaser.title} intro={home.teamTeaser.intro} />
         {team.length > 0 ? (
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
             {team.map((member) => (
               <TeamCard key={member.slug} member={member} />
             ))}
           </div>
         ) : (
-          <p className="type-body mt-4 text-text-muted">{ui.emptyStates.team}</p>
+          <p className="type-body mt-5 text-text-muted">{ui.emptyStates.team}</p>
         )}
         <Link
           href={home.teamTeaser.cta.href}
-          className="text-link type-body-small font-semibold mt-8 inline-block"
+          className="text-link type-body-small font-semibold mt-10 inline-block"
         >
-          {home.teamTeaser.cta.label}
+          {home.teamTeaser.cta.label} →
         </Link>
       </section>
 
       <section className="container-page section-y" aria-label={home.insightsTeaser.title}>
         <SectionHeader title={home.insightsTeaser.title} intro={home.insightsTeaser.intro} />
         {posts.length > 0 ? (
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <PostCard
-                key={post.slug}
-                post={post}
-                authorName={getTeamMemberBySlug(post.author)?.name ?? ''}
-              />
+          <ol className="mt-10">
+            {posts.map((post, index) => (
+              <li key={post.slug}>
+                <PostCard
+                  post={post}
+                  authorName={getTeamMemberBySlug(post.author)?.name ?? ''}
+                  index={index + 1}
+                />
+              </li>
             ))}
-          </div>
+            <li aria-hidden="true" className="border-t border-border" />
+          </ol>
         ) : (
-          <p className="type-body mt-4 text-text-muted">{ui.emptyStates.posts}</p>
+          <p className="type-body mt-5 text-text-muted">{ui.emptyStates.posts}</p>
         )}
         <Link
           href={home.insightsTeaser.cta.href}
-          className="text-link type-body-small font-semibold mt-8 inline-block"
+          className="text-link type-body-small font-semibold mt-10 inline-block"
         >
-          {home.insightsTeaser.cta.label}
+          {home.insightsTeaser.cta.label} →
         </Link>
       </section>
 

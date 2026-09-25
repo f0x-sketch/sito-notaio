@@ -161,18 +161,18 @@ function renderBlock(block: Block, key: string): ReactNode {
       const id = slugify(block.text) || undefined;
       const content = renderInline(block.text, key);
       return block.level <= 2 ? (
-        <h2 key={key} id={id} className="type-heading-2 hyphens-auto mt-8 lg:mt-12">
+        <h2 key={key} id={id} className="type-heading-2 hyphens-auto mt-12 lg:mt-16">
           {content}
         </h2>
       ) : (
-        <h3 key={key} id={id} className="type-heading-3 hyphens-auto mt-8">
+        <h3 key={key} id={id} className="type-heading-3 hyphens-auto mt-10">
           {content}
         </h3>
       );
     }
     case 'paragraph':
       return (
-        <p key={key} className="type-body mt-4 first:mt-0">
+        <p key={key} className="type-body mt-5 first:mt-0">
           {renderInline(block.text, key)}
         </p>
       );
@@ -183,23 +183,36 @@ function renderBlock(block: Block, key: string): ReactNode {
         </li>
       ));
       return block.ordered ? (
-        <ol key={key} className="mt-4 list-decimal space-y-2 pl-5">
+        <ol key={key} className="mt-5 list-decimal space-y-2 pl-5">
           {items}
         </ol>
       ) : (
-        <ul key={key} className="mt-4 list-disc space-y-2 pl-5">
+        <ul key={key} className="mt-5 list-disc space-y-2 pl-5">
           {items}
         </ul>
       );
     }
     case 'quote':
       return (
-        <blockquote key={key} className="mt-4 border-l-2 border-accent pl-4 text-text-muted">
-          {parseBlocks(block.text).map((inner, index) => renderBlock(inner, `${key}-q${index}`))}
+        <blockquote
+          key={key}
+          className="my-10 border-y-2 border-text py-8 lg:my-14 lg:py-10"
+        >
+          <div className="type-heading-2 hyphens-auto">
+            {parseBlocks(block.text).map((inner, index) =>
+              inner.type === 'paragraph' ? (
+                <p key={`${key}-q${index}`} className="mt-4 first:mt-0">
+                  {renderInline(inner.text, `${key}-q${index}`)}
+                </p>
+              ) : (
+                renderBlock(inner, `${key}-q${index}`)
+              ),
+            )}
+          </div>
         </blockquote>
       );
     case 'hr':
-      return <hr key={key} className="my-8 border-0 border-t border-border" />;
+      return <hr key={key} className="my-10 border-0 border-t border-border" />;
   }
 }
 
@@ -209,9 +222,10 @@ type ProseProps = {
 };
 
 /**
- * Markdown prose renderer (DESIGN.md §5.12). Server-only: the Markdown subset
- * of the content layer (headings, paragraphs, lists, blockquotes, rules, links,
- * emphasis, code) becomes fully typed React nodes — no raw HTML.
+ * Markdown prose renderer. Server-only: the Markdown subset of the content
+ * layer (headings, paragraphs, lists, blockquotes, rules, links, emphasis,
+ * code) becomes fully typed React nodes — no raw HTML. Blockquotes render as
+ * editorial pull quotes between ink rules.
  */
 export function Prose({ markdown, className }: ProseProps) {
   return (

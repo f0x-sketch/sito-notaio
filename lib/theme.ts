@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { SiteConfig } from '@/content';
 
-/** DESIGN.md §2.1 reserved semantic roles, used when a firm omits them. */
+/** Reserved semantic roles, used when a firm omits them. */
 const SEMANTIC_DEFAULTS = {
   success: '#2F6B4F',
   warning: '#8A6D1F',
@@ -15,8 +15,8 @@ const SEMANTIC_DEFAULTS = {
  * keeping the configured stack as fallback; any other family is used verbatim.
  */
 const SELF_HOSTED_FAMILIES: Record<string, string> = {
-  'Source Serif 4': 'var(--font-serif-default, "Source Serif 4")',
-  Inter: 'var(--font-sans-default, "Inter")',
+  Fraunces: 'var(--font-serif-default, "Fraunces")',
+  Archivo: 'var(--font-sans-default, "Archivo")',
 };
 
 function resolveFontStack(stack: string): string {

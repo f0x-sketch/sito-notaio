@@ -11,8 +11,8 @@ type BrandLogoProps = {
 };
 
 /**
- * Brand lockup: logo image when configured, wordmark text otherwise
- * (per PM decision the seal monogram is not a logo fallback).
+ * Brand lockup: logo image when configured, display-serif wordmark text
+ * otherwise (the seal monogram is not a logo fallback).
  * The link is always labelled by the firm name from `SiteConfig`.
  */
 export function BrandLogo({ name, logo, href, className }: BrandLogoProps) {
@@ -29,7 +29,7 @@ export function BrandLogo({ name, logo, href, className }: BrandLogoProps) {
             width={logo.width ?? 240}
             height={logo.height ?? 64}
             unoptimized={logo.src.endsWith('.svg')}
-            className="h-8 w-auto"
+            className="h-9 w-auto"
             priority
           />
           <span className="sr-only">{name}</span>

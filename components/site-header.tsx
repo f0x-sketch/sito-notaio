@@ -26,9 +26,9 @@ function isCurrent(href: string, pathname: string): boolean {
 }
 
 /**
- * Sticky site header (DESIGN.md §5.1): brand lockup, single-line desktop nav,
- * contact CTA, and the mobile menu toggle. Elevation is applied after ~24px
- * of scroll.
+ * Sticky magazine masthead: brand lockup, tracked desktop nav, contact CTA,
+ * mobile menu toggle. Double rule (ink + hairline) under the bar; elevation
+ * after ~24px of scroll.
  */
 export function SiteHeader({
   brand,
@@ -65,67 +65,70 @@ export function SiteHeader({
 
   return (
     <header
-      className={`sticky top-0 z-50 overflow-x-clip border-b border-border bg-surface-raised transition-shadow duration-150 ${
+      className={`sticky top-0 z-50 overflow-x-clip bg-surface-raised transition-shadow duration-150 ${
         scrolled ? 'shadow-elevation-1' : ''
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between lg:h-[72px]">
-        <BrandLogo name={brand.name} logo={brand.logo} href="/" />
+      <div className="border-b-[3px] border-text">
+        <div className="container-page flex h-[72px] items-center justify-between lg:h-[88px]">
+          <BrandLogo name={brand.name} logo={brand.logo} href="/" />
 
-        <nav aria-label={navLabel} className="hidden lg:block">
-          <ul className="flex items-center gap-8">
-            {navItems.map((item) => {
-              const current = isCurrent(item.href, pathname);
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    aria-current={current ? 'page' : undefined}
-                    className={`type-body-small flex h-[72px] items-center rounded-xs px-1 font-semibold ${
-                      current
-                        ? 'border-b-2 border-primary text-primary'
-                        : 'text-text hover:text-primary hover:underline hover:decoration-2 hover:underline-offset-[6px]'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+          <nav aria-label={navLabel} className="hidden lg:block">
+            <ul className="flex items-center gap-9">
+              {navItems.map((item) => {
+                const current = isCurrent(item.href, pathname);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={current ? 'page' : undefined}
+                      className={`type-label flex h-[88px] items-center rounded-xs px-1 ${
+                        current
+                          ? 'border-b-4 border-primary text-primary'
+                          : 'text-text hover:text-primary hover:underline hover:decoration-2 hover:underline-offset-[8px]'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-        {cta ? (
-          <Link href={cta.href} className="button-primary hidden lg:inline-flex">
-            {cta.label}
-          </Link>
-        ) : null}
+          {cta ? (
+            <Link href={cta.href} className="button-primary hidden lg:inline-flex">
+              {cta.label}
+            </Link>
+          ) : null}
 
-        <button
-          ref={toggleRef}
-          type="button"
-          aria-expanded={open}
-          aria-controls={DRAWER_ID}
-          aria-label={open ? closeMenuLabel : openMenuLabel}
-          onClick={() => (open ? closeDrawer() : setOpen(true))}
-          className="-mr-3 flex h-11 w-11 items-center justify-center rounded-xs text-text hover:bg-primary-tint lg:hidden"
-        >
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
+          <button
+            ref={toggleRef}
+            type="button"
+            aria-expanded={open}
+            aria-controls={DRAWER_ID}
+            aria-label={open ? closeMenuLabel : openMenuLabel}
+            onClick={() => (open ? closeDrawer() : setOpen(true))}
+            className="-mr-3 flex h-11 w-11 items-center justify-center rounded-xs text-text hover:text-primary lg:hidden"
           >
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-            )}
-          </svg>
-        </button>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              {open ? (
+                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
+      <div aria-hidden="true" className="border-b border-border" />
 
       <MobileNavDrawer
         open={open}

@@ -9,30 +9,37 @@ type CtaBandProps = {
 };
 
 /**
- * CTA band (DESIGN.md §5.13): one per page maximum, always after the last
- * content section. Never used on `/contatti` or on the legal stubs.
+ * Oversized CTA band: full-bleed inverse surface with display-serif
+ * headline and a single primary action. One per page maximum, always after
+ * the last content section. Never used on `/contatti` or on the legal stubs.
  */
 export function CtaBand({ content, phone }: CtaBandProps) {
   return (
-    <section className="surface-inverse bg-surface-inverse py-[var(--section-y)] text-text-inverse">
-      <div className="container-page grid gap-6 lg:grid-cols-12 lg:items-center">
-        <div className="lg:col-span-7">
-          <h2 className="type-heading-2 hyphens-auto">{content.title}</h2>
-          {content.body ? (
-            <p className="type-body-small mt-2 max-w-[50ch] text-text-inverse-muted">
-              {content.body}
-            </p>
-          ) : null}
-        </div>
-        <div className="flex flex-col items-start gap-4 lg:col-span-4 lg:col-start-9">
-          <Link href={content.cta.href} className="button-inverse w-full lg:w-auto">
-            {content.cta.label}
-          </Link>
-          {phone ? (
-            <a href={telHref(phone)} className="text-link-inverse type-body-small tabular-nums">
-              {phone}
-            </a>
-          ) : null}
+    <section className="surface-inverse bg-surface-inverse py-[var(--section-y-lg)] text-text-inverse">
+      <div className="container-page">
+        <span
+          aria-hidden="true"
+          className="mb-8 block h-1 w-24 bg-text-inverse"
+        />
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-x-12">
+          <div className="lg:col-span-7">
+            <h2 className="type-display hyphens-auto">{content.title}</h2>
+            {content.body ? (
+              <p className="type-body mt-5 max-w-[48ch] text-text-inverse-muted">
+                {content.body}
+              </p>
+            ) : null}
+          </div>
+          <div className="flex flex-col items-start gap-5 lg:col-span-4 lg:col-start-9">
+            <Link href={content.cta.href} className="button-inverse w-full sm:w-auto">
+              {content.cta.label}
+            </Link>
+            {phone ? (
+              <a href={telHref(phone)} className="text-link-inverse type-body tabular-nums">
+                {phone}
+              </a>
+            ) : null}
+          </div>
         </div>
       </div>
     </section>

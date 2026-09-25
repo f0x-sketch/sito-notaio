@@ -30,28 +30,26 @@ export default function InsightsIndexPage() {
         ) : (
           <>
             <SectionHeader title={ui.insightsSectionTitle} />
-            <div className="mt-8 grid gap-[var(--card-gap)] lg:grid-cols-3">
+            <div className="mt-10">
               <PostCard
                 post={posts[0]}
                 authorName={getTeamMemberBySlug(posts[0].author)?.name ?? ''}
                 featured
-                className="lg:col-span-2"
               />
             </div>
             {posts.length > 1 ? (
-              <div
-                className={`mt-[var(--card-gap)] grid gap-[var(--card-gap)] md:grid-cols-2 ${
-                  posts.length < 4 ? '' : 'lg:grid-cols-3'
-                }`}
-              >
-                {posts.slice(1).map((post) => (
-                  <PostCard
-                    key={post.slug}
-                    post={post}
-                    authorName={getTeamMemberBySlug(post.author)?.name ?? ''}
-                  />
+              <ol className="mt-16">
+                {posts.slice(1).map((post, index) => (
+                  <li key={post.slug}>
+                    <PostCard
+                      post={post}
+                      authorName={getTeamMemberBySlug(post.author)?.name ?? ''}
+                      index={index + 2}
+                    />
+                  </li>
                 ))}
-              </div>
+                <li aria-hidden="true" className="border-t border-border" />
+              </ol>
             ) : null}
           </>
         )}

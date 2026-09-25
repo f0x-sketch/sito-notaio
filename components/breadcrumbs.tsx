@@ -34,7 +34,7 @@ function buildCrumbs(
     crumbs.push({ label: labels[href] ?? humanize(segment), href });
   }
 
-  // Keep at most 4 items (DESIGN.md §5.4): drop intermediate levels.
+  // Keep at most 4 items: drop intermediate levels.
   if (crumbs.length > 4) {
     return [crumbs[0], { label: '…', href: '' }, ...crumbs.slice(-2)];
   }
@@ -42,8 +42,8 @@ function buildCrumbs(
 }
 
 /**
- * Route-driven breadcrumbs (DESIGN.md §5.4): labelled `nav`, `›` separators,
- * last item current and unlinked, hidden on the homepage and on unknown paths
+ * Route-driven breadcrumbs: tracked caption trail with `›` separators, last
+ * item current and unlinked, hidden on the homepage and on unknown paths
  * (the prerendered 404 renders at `/_not-found` server-side, so breadcrumbs
  * must stay absent for any unrecognised route to avoid a hydration mismatch).
  */
@@ -54,17 +54,24 @@ export function Breadcrumbs({ labels, homeLabel, navLabel }: BreadcrumbsProps) {
   // Hide on the homepage and on paths that do not match any known route.
   if (crumbs.length <= 1) return null;
   const firstSegment = crumbs[1]?.href ?? '';
-  if (firstSegment && !(firstSegment in labels) && !Object.keys(labels).some((k) => k.startsWith(`${firstSegment}/`))) {
+  if (
+    firstSegment &&
+    !(firstSegment in labels) &&
+    !Object.keys(labels).some((k) => k.startsWith(`${firstSegment}/`))
+  ) {
     return null;
   }
 
   return (
-    <nav aria-label={navLabel} className="container-page pt-6">
+    <nav aria-label={navLabel} className="container-page pt-8">
       <ol className="type-caption flex flex-wrap items-center gap-x-2 gap-y-1 text-text-muted">
         {crumbs.map((crumb, index) => {
           const last = index === crumbs.length - 1;
           return (
-            <li key={`${crumb.href}-${crumb.label}`} className="flex items-center gap-2">
+            <li
+              key={`${crumb.href}-${crumb.label}`}
+              className="flex items-center gap-2"
+            >
               {index > 0 ? (
                 <span aria-hidden="true" className="text-border-strong">
                   ›

@@ -10,9 +10,9 @@ type SealMonogramProps = {
 };
 
 /**
- * Seal monogram (DESIGN.md §5.11): the brand fallback for missing media —
- * never a logo fallback. Decorative unless `label` is provided (e.g. when it
- * stands in for a person's photo).
+ * Seal monogram: the brand fallback for missing media — never a logo
+ * fallback. Decorative unless `label` is provided (e.g. when it stands in
+ * for a person's photo). Display-serif initials inside a circular seal.
  */
 export function SealMonogram({
   initials,
@@ -30,7 +30,7 @@ export function SealMonogram({
       {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}
       className={`flex items-center justify-center rounded-full ${toneClassName} ${className ?? 'h-16 w-16'}`}
     >
-      <span className="type-heading-3 select-none">{initials ?? '—'}</span>
+      <span className="type-heading-2 select-none">{initials ?? '—'}</span>
     </div>
   );
 }

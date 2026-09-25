@@ -33,7 +33,7 @@ export default function ServicesIndexPage() {
         {!hasServices ? (
           <p className="type-body text-text-muted">{ui.emptyStates.services}</p>
         ) : (
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-20">
             {categories.map((category) => {
               const services = getServicesByCategory(category.slug);
               if (services.length === 0) return null;
@@ -44,15 +44,14 @@ export default function ServicesIndexPage() {
                     intro={category.description}
                     compact
                   />
-                  <div
-                    className={`mt-6 grid gap-[var(--card-gap)] md:grid-cols-2 ${
-                      services.length >= 7 ? 'xl:grid-cols-3' : ''
-                    }`}
-                  >
-                    {services.map((service) => (
-                      <ServiceCard key={service.slug} service={service} />
+                  <ol className="mt-8">
+                    {services.map((service, index) => (
+                      <li key={service.slug}>
+                        <ServiceCard service={service} index={index + 1} />
+                      </li>
                     ))}
-                  </div>
+                    <li aria-hidden="true" className="border-t border-border" />
+                  </ol>
                 </section>
               );
             })}

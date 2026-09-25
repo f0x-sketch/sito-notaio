@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Inter, Source_Serif_4 } from 'next/font/google';
+import { Archivo, Fraunces } from 'next/font/google';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -10,17 +10,20 @@ import { buildMetadata, siteViewport } from '@/lib/seo';
 import { themeVariables } from '@/lib/theme';
 import './globals.css';
 
-/* Self-hosted boilerplate defaults (DESIGN.md §2.2 / PM decision). Firms
- * override the rendered families through `SiteConfig.branding.typography`. */
-const displayFont = Source_Serif_4({
+/* Self-hosted editorial pairing: expressive display serif against a clean
+ * working sans. Firms override the rendered families through
+ * `SiteConfig.branding.typography`. */
+const displayFont = Fraunces({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-serif-default',
   display: 'swap',
+  weight: 'variable',
 });
-const bodyFont = Inter({
+const bodyFont = Archivo({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-sans-default',
   display: 'swap',
+  weight: 'variable',
 });
 
 export const metadata: Metadata = buildMetadata();

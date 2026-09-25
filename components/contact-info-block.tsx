@@ -11,14 +11,14 @@ type Channel = {
   key: string;
   label: string;
   value: ReactNode;
-  /** When set, the whole row becomes the link (DESIGN.md §5.10). */
+  /** When set, the whole row becomes the link. */
   href?: string;
-  /** `heading-3` for short actionable values, `body` for long plain values. */
+  /** `strong` for short actionable values, `plain` for long plain values. */
   emphasis?: 'strong' | 'plain';
 };
 
 /**
- * ContactInfoBlock (DESIGN.md §5.10): grid of channels from
+ * ContactInfoBlock: ruled editorial rows of channels from
  * `SiteConfig.contact` only. A channel that is not configured is omitted
  * entirely — never rendered as an "N/D" placeholder.
  */
@@ -76,7 +76,9 @@ export function ContactInfoBlock({ contact, labels }: ContactInfoBlockProps) {
           {contact.officeHours.map((slot) => (
             <span key={`${slot.days}-${slot.hours}`} className="block tabular-nums">
               {slot.days}: {slot.hours}
-              {slot.note ? <span className="type-caption text-text-muted"> ({slot.note})</span> : null}
+              {slot.note ? (
+                <span className="type-caption text-text-muted"> ({slot.note})</span>
+              ) : null}
             </span>
           ))}
         </span>
@@ -85,18 +87,18 @@ export function ContactInfoBlock({ contact, labels }: ContactInfoBlockProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
       {channels.map((channel) => {
-        const rowClassName = `flex min-h-16 flex-col justify-center gap-1 border-t border-border py-5 md:pr-8 ${
-          channel.href ? 'group rounded-xs hover:bg-primary-tint' : ''
+        const rowClassName = `flex min-h-16 flex-col justify-center gap-2 border-t border-border py-6 lg:py-8 ${
+          channel.href ? 'group rounded-xs hover:bg-primary-tint hover:px-4' : ''
         }`;
         const body = (
           <>
-            <span className="type-caption text-text-muted">{channel.label}</span>
+            <span className="type-label text-text-muted">{channel.label}</span>
             <span
               className={`break-words ${
                 channel.emphasis === 'strong'
-                  ? 'type-heading-3 tabular-nums group-hover:text-primary group-hover:underline group-hover:underline-offset-4'
+                  ? 'type-heading-2 tabular-nums group-hover:text-primary group-hover:underline group-hover:underline-offset-4'
                   : 'type-body'
               }`}
             >

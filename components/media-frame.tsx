@@ -7,15 +7,17 @@ type MediaFrameProps = {
   /** Content-layer image; when omitted the fallback panel is rendered. */
   image?: ImageRef;
   /** Tailwind aspect utilities, e.g. `aspect-[4/5]` or `aspect-[4/3] lg:aspect-[4/5]`. */
-  aspectClassName: string;
+  aspectClassName?: string;
   /** Panel rendered when no image is configured (defaults to the seal monogram). */
   fallback?: ReactNode;
   /** Force empty alt text (decorative media). */
   decorative?: boolean;
   priority?: boolean;
   sizes?: string;
-  /** `rounded` = small radius (cards, photos); `circle` = avatar chips. */
+  /** `rounded` = square editorial frames; `circle` = avatar chips. */
   shape?: 'rounded' | 'circle';
+  /** Fill the positioned parent instead of reserving an aspect ratio. */
+  fill?: boolean;
   className?: string;
 };
 
@@ -24,9 +26,10 @@ function isSvg(src: string): boolean {
 }
 
 /**
- * Fixed-aspect media frame (DESIGN.md §3 / §8): always reserves its final
- * aspect ratio (no layout shift), crops with `object-fit: cover`, and falls
- * back to a monogram panel at the same ratio when the image is not configured.
+ * Media frame: either reserves its final aspect ratio (no layout shift) or
+ * fills a positioned parent. Crops with `object-fit: cover`, falls back to a
+ * monogram panel at the same footprint when the image is not configured.
+ * Square corners throughout — editorial treatment.
  */
 export function MediaFrame({
   image,
@@ -36,11 +39,14 @@ export function MediaFrame({
   priority,
   sizes,
   shape = 'rounded',
+  fill,
   className,
 }: MediaFrameProps) {
-  const frameClassName = `relative overflow-hidden bg-primary-tint ${
-    shape === 'circle' ? 'rounded-full' : 'rounded-sm'
-  } ${aspectClassName} ${className ?? ''}`;
+  const frameClassName = fill
+    ? `absolute inset-0 overflow-hidden bg-primary-tint ${className ?? ''}`
+    : `relative overflow-hidden bg-primary-tint ${
+        shape === 'circle' ? 'rounded-full' : ''
+      } ${aspectClassName ?? ''} ${className ?? ''}`;
 
   if (!image) {
     return (

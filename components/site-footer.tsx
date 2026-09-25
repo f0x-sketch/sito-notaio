@@ -20,29 +20,32 @@ const inverseLinkClassName =
   'rounded-xs text-text-inverse-muted underline-offset-4 hover:text-text-inverse hover:underline';
 
 /**
- * Site footer (DESIGN.md §5.3): brand, contact channels, configured link
- * columns, legal data and social links on the inverse surface.
+ * Site colophon: brand, contact channels, configured link columns, legal
+ * data and social links on the inverse surface, closed by a ruled colophon
+ * line.
  */
 export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
   const { identity, branding, contact, legal, social } = config;
   const year = new Date().getFullYear();
 
   return (
-    <footer className="surface-inverse bg-surface-inverse pb-8 pt-[var(--section-y)] text-text-inverse">
+    <footer className="surface-inverse bg-surface-inverse pb-10 pt-[var(--section-y)] text-text-inverse">
       <div className="container-page">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col gap-4 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-10">
+          <div className="flex flex-col gap-5 border-t-2 border-text-inverse pt-6 md:col-span-2 lg:col-span-1">
             <BrandLogo
               name={identity.name}
               logo={branding.logo.dark}
               href="/"
               className="text-text-inverse"
             />
-            <p className="type-body-small text-text-inverse-muted">{identity.description}</p>
+            <p className="type-body-small max-w-[36ch] text-text-inverse-muted">
+              {identity.description}
+            </p>
           </div>
 
-          <div className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
-            <h2 className="type-body-small font-semibold text-text-inverse">{ui.footerContactHeading}</h2>
+          <div className="flex flex-col gap-4 border-t-2 border-text-inverse pt-6">
+            <h2 className="type-label text-text-inverse">{ui.footerContactHeading}</h2>
             <address className="type-body-small flex flex-col gap-3 break-words not-italic text-text-inverse-muted">
               <span className="flex flex-col">
                 {addressLines(contact.address).map((line) => (
@@ -53,19 +56,27 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
                 href={`tel:${contact.phone.replace(/\s+/g, '')}`}
                 className={`tabular-nums ${inverseLinkClassName} w-fit`}
               >
-                <span className="type-caption text-text-inverse-muted">{ui.contactLabels.phone}: </span>
+                <span className="type-caption text-text-inverse-muted">
+                  {ui.contactLabels.phone}:{' '}
+                </span>
                 {contact.phone}
               </a>
               <a href={`mailto:${contact.email}`} className={`${inverseLinkClassName} w-fit`}>
-                <span className="type-caption text-text-inverse-muted">{ui.contactLabels.email}: </span>
+                <span className="type-caption text-text-inverse-muted">
+                  {ui.contactLabels.email}:{' '}
+                </span>
                 {contact.email}
               </a>
               <a href={`mailto:${contact.pec}`} className={`${inverseLinkClassName} w-fit`}>
-                <span className="type-caption text-text-inverse-muted">{ui.contactLabels.pec}: </span>
+                <span className="type-caption text-text-inverse-muted">
+                  {ui.contactLabels.pec}:{' '}
+                </span>
                 {contact.pec}
               </a>
               <span className="flex flex-col">
-                <span className="type-caption text-text-inverse-muted">{ui.contactLabels.officeHours}</span>
+                <span className="type-caption text-text-inverse-muted">
+                  {ui.contactLabels.officeHours}
+                </span>
                 {contact.officeHours.map((slot) => (
                   <span key={`${slot.days}-${slot.hours}`} className="tabular-nums">
                     {slot.days}: {slot.hours}
@@ -80,9 +91,9 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
             <nav
               key={column.title}
               aria-label={column.title}
-              className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0"
+              className="flex flex-col gap-4 border-t-2 border-text-inverse pt-6"
             >
-              <h2 className="type-body-small font-semibold text-text-inverse">{column.title}</h2>
+              <h2 className="type-label text-text-inverse">{column.title}</h2>
               <ul className="flex flex-col gap-2">
                 {column.items.map((item) => (
                   <li key={item.href}>
@@ -110,8 +121,8 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
             </nav>
           ))}
 
-          <div className="flex flex-col gap-3 border-t border-border pt-8 first:border-t-0 first:pt-0 md:border-t-0 md:pt-0">
-            <h2 className="type-body-small font-semibold text-text-inverse">{ui.footerLegalHeading}</h2>
+          <div className="flex flex-col gap-4 border-t-2 border-text-inverse pt-6">
+            <h2 className="type-label text-text-inverse">{ui.footerLegalHeading}</h2>
             <ul className="flex flex-col gap-2">
               {navigation.footer.legalLinks.map((item) => (
                 <li key={item.href}>
@@ -153,7 +164,7 @@ export function SiteFooter({ config, navigation, ui }: SiteFooterProps) {
           </div>
         </div>
 
-        <p className="type-caption mt-12 border-t border-border pt-8 text-text-inverse-muted">
+        <p className="type-caption mt-14 border-t border-text-inverse-muted pt-8 text-text-inverse-muted">
           © {year} {identity.legalName} · {ui.vatLabel} {legal.vatNumber}
         </p>
       </div>

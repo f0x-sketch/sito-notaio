@@ -21,20 +21,22 @@ export default function StudioPage() {
       <PageHero hero={studio.hero} />
 
       <section className="container-page section-y">
-        <div className="lg:grid lg:grid-cols-12">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-7 lg:col-start-2">
             <Prose markdown={studio.story} />
             {studio.timeline && studio.timeline.length > 0 ? (
-              <ol className="mt-10 border-t border-border">
+              <ol className="mt-14 border-t-2 border-text">
                 {studio.timeline.map((entry) => (
                   <li
                     key={`${entry.year}-${entry.title}`}
-                    className="grid gap-1 border-b border-border py-5 lg:grid-cols-[80px_1fr] lg:gap-6"
+                    className="grid gap-2 border-b border-border py-7 lg:grid-cols-[120px_1fr] lg:gap-8 lg:py-9"
                   >
-                    <span className="type-caption tabular-nums text-text-muted">{entry.year}</span>
+                    <span className="type-index text-primary">{entry.year}</span>
                     <div>
-                      <h3 className="type-heading-3 hyphens-auto">{entry.title}</h3>
-                      <p className="type-body-small mt-1 text-text-muted">{entry.description}</p>
+                      <h3 className="type-heading-2 hyphens-auto">{entry.title}</h3>
+                      <p className="type-body-small mt-2 max-w-[48ch] text-text-muted">
+                        {entry.description}
+                      </p>
                     </div>
                   </li>
                 ))}
@@ -51,6 +53,7 @@ export default function StudioPage() {
       {studio.sede ? (
         <section className="container-page section-y">
           <figure>
+            <span className="section-rule mb-6" aria-hidden="true" />
             <MediaFrame
               image={studio.sede.image}
               aspectClassName="aspect-[4/3] lg:aspect-[21/9]"
@@ -58,7 +61,7 @@ export default function StudioPage() {
               sizes="100vw"
             />
             {studio.sede.caption ? (
-              <figcaption className="type-caption mt-2 text-text-muted">
+              <figcaption className="type-caption mt-3 text-text-muted">
                 {studio.sede.caption}
               </figcaption>
             ) : null}

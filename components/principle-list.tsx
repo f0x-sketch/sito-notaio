@@ -6,26 +6,26 @@ type PrincipleListProps = {
 };
 
 /**
- * PrincipleList (DESIGN.md §5.6): 3–4 numbered items — tabular number +
- * `heading-3` + `body-small`, no icons, no cards. Columns separated by
- * vertical hairlines on desktop; hairline rows on mobile.
+ * PrincipleList: 3–4 items with oversized display numerals over
+ * `heading-2` titles — no icons, no cards. Columns separated by vertical
+ * hairlines on desktop; hairline rows on mobile.
  */
 export function PrincipleList({ content }: PrincipleListProps) {
   return (
     <section aria-label={content.title}>
       <SectionHeader title={content.title} intro={content.intro} />
-      <ol className="mt-8 border-t border-border lg:grid lg:grid-cols-3 lg:border-t-0">
+      <ol className="mt-10 lg:grid lg:grid-cols-3 lg:gap-x-10">
         {content.items.map((item, index) => (
           <li
             key={item.title}
-            className="border-b border-border py-6 last:border-b-0 lg:border-b-0 lg:border-l lg:px-6 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0"
+            className="border-t border-border py-8 lg:border-t-0 lg:border-l lg:px-8 lg:py-0 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0"
           >
-            <div className="flex flex-col gap-2 lg:gap-3">
-              <span className="type-caption tabular-nums text-text-muted">
+            <div className="flex flex-col gap-3">
+              <span aria-hidden="true" className="type-index-lg text-primary">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <h3 className="type-heading-3">{item.title}</h3>
-              <p className="type-body-small text-text-muted">{item.description}</p>
+              <h3 className="type-heading-2 hyphens-auto">{item.title}</h3>
+              <p className="type-body-small max-w-[36ch] text-text-muted">{item.description}</p>
             </div>
           </li>
         ))}

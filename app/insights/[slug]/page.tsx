@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
   return buildPageMetadata(post.seo, { title: post.title, description: post.excerpt });
 }
 
-/** DESIGN.md §6.9: same tag first, fill to 2 cards, then others. */
+/** Related posts: same tag first, fill to 2 cards, then others. */
 function relatedPosts(all: BlogPost[], current: BlogPost): BlogPost[] {
   const others = all.filter((post) => post.slug !== current.slug);
   const sharesTag = (post: BlogPost) => post.tags.some((tag) => current.tags.includes(tag));
@@ -50,33 +50,34 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <header className="container-page py-12 lg:py-[var(--section-y)]">
-        <div className="relative lg:pl-8">
-          {post.tags.length > 0 ? (
-            <p className="type-caption flex flex-wrap items-center gap-x-2 text-text-muted">
-              {post.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </p>
-          ) : null}
-          <span className="margin-rule" aria-hidden="true" />
-          <h1 className="type-title hyphens-auto">{post.title}</h1>
-          <p className="type-caption mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 tabular-nums text-text-muted">
-            {author ? (
-              <Link href={`/professionisti/${author.slug}`} className="text-link">
-                {author.name}
-              </Link>
-            ) : null}
-            <span aria-hidden="true">·</span>
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            {post.readingTimeMinutes ? (
-              <>
-                <span aria-hidden="true">·</span>
-                <span>{post.readingTimeMinutes}{ui.readingTimeSuffix}</span>
-              </>
-            ) : null}
+      <header className="container-page py-14 lg:py-[var(--section-y)]">
+        {post.tags.length > 0 ? (
+          <p className="type-label mb-4 flex flex-wrap items-center gap-x-3 text-primary">
+            {post.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
           </p>
-        </div>
+        ) : null}
+        <span className="kicker-rule" aria-hidden="true" />
+        <h1 className="type-title hyphens-auto max-w-[22ch]">{post.title}</h1>
+        <p className="type-caption mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 tabular-nums text-text-muted">
+          {author ? (
+            <Link href={`/professionisti/${author.slug}`} className="text-link">
+              {author.name}
+            </Link>
+          ) : null}
+          <span aria-hidden="true">·</span>
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          {post.readingTimeMinutes ? (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>
+                {post.readingTimeMinutes}
+                {ui.readingTimeSuffix}
+              </span>
+            </>
+          ) : null}
+        </p>
       </header>
 
       {post.coverImage ? (
@@ -89,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
               sizes="(min-width: 1024px) 80vw, 100vw"
             />
             {post.coverCaption ? (
-              <figcaption className="type-caption mt-2 text-text-muted">
+              <figcaption className="type-caption mt-3 text-text-muted">
                 {post.coverCaption}
               </figcaption>
             ) : null}
@@ -107,28 +108,25 @@ export default async function BlogPostPage({ params }: Props) {
 
       {author ? (
         <section className="container-page pb-[var(--section-y)]">
-          <div className="flex items-center gap-4 border-t border-border pt-8">
+          <div className="flex items-center gap-5 border-t-2 border-text pt-8">
             {author.photo ? (
               <MediaFrame
                 image={author.photo}
-                aspectClassName="aspect-square h-12 w-12"
+                aspectClassName="aspect-square h-14 w-14"
                 shape="circle"
                 decorative
-                sizes="48px"
+                sizes="56px"
               />
             ) : (
-              <SealMonogram className="h-12 w-12" />
+              <SealMonogram className="h-14 w-14" />
             )}
             <div>
-              <p className="type-heading-3">
-                <Link
-                  href={`/professionisti/${author.slug}`}
-                  className="text-link decoration-1"
-                >
+              <p className="type-heading-2">
+                <Link href={`/professionisti/${author.slug}`} className="text-link decoration-1">
                   {author.name}
                 </Link>
               </p>
-              <p className="type-caption text-text-muted">{memberCaptionLine(author)}</p>
+              <p className="type-label mt-1 text-text-muted">{memberCaptionLine(author)}</p>
             </div>
           </div>
         </section>
@@ -137,15 +135,18 @@ export default async function BlogPostPage({ params }: Props) {
       {related.length > 0 ? (
         <section className="container-page section-y" aria-label={ui.relatedPostsTitle}>
           <SectionHeader title={ui.relatedPostsTitle} />
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2">
-            {related.map((item) => (
-              <PostCard
-                key={item.slug}
-                post={item}
-                authorName={getTeamMemberBySlug(item.author)?.name ?? ''}
-              />
+          <ol className="mt-8">
+            {related.map((item, index) => (
+              <li key={item.slug}>
+                <PostCard
+                  post={item}
+                  authorName={getTeamMemberBySlug(item.author)?.name ?? ''}
+                  index={index + 1}
+                />
+              </li>
             ))}
-          </div>
+            <li aria-hidden="true" className="border-t border-border" />
+          </ol>
         </section>
       ) : null}
     </>

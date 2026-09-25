@@ -14,17 +14,18 @@ export function memberCaptionLine(member: TeamMember): string {
 }
 
 /**
- * TeamCard (DESIGN.md §5.8): photo 4:5 card on desktop; horizontal row with a
- * 88×110 photo and hairline divider on mobile. Whole card is one link (§4).
+ * TeamCard: editorial contributor block — sharp 4:5 portrait under a strong
+ * ink rule, display-serif name, tracked caption. Whole card is one link.
+ * Horizontal row with a compact portrait on mobile.
  */
 export function TeamCard({ member, className }: TeamCardProps) {
   return (
     <article
-      className={`group relative flex items-start gap-4 border-b border-border pb-4 md:items-stretch md:flex-col md:gap-3 md:rounded-sm md:border md:border-border md:bg-surface-raised md:p-4 md:pb-4 md:transition-colors md:duration-150 md:hover:border-border-strong md:has-[:focus-visible]:outline-2 md:has-[:focus-visible]:outline-offset-2 md:has-[:focus-visible]:outline-focus ${
+      className={`group relative flex items-start gap-5 border-t border-border pt-5 md:flex-col md:gap-0 md:border-t-2 md:border-text md:pt-0 md:[&>div:first-child]:mt-0 ${
         className ?? ''
       }`}
     >
-      <div className="w-[88px] shrink-0 md:w-auto">
+      <div className="w-[88px] shrink-0 md:mt-6 md:w-auto">
         <MediaFrame
           image={member.photo}
           aspectClassName="aspect-[4/5]"
@@ -32,29 +33,23 @@ export function TeamCard({ member, className }: TeamCardProps) {
           sizes="(min-width: 768px) 30vw, 88px"
         />
       </div>
-      <div className="flex min-w-0 flex-col gap-1">
-        <h3 className="type-heading-3 hyphens-auto">
+      <div className="flex min-w-0 flex-col gap-2 pb-5 md:pb-8 md:pt-5">
+        <h3 className="type-heading-2 hyphens-auto">
           <Link
             href={`/professionisti/${member.slug}`}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
           >
-            <span className="group-hover:text-primary group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
+            <span className="transition-colors duration-150 group-hover:text-primary group-hover:underline group-hover:decoration-2 group-hover:underline-offset-[6px]">
               {member.name}
             </span>
           </Link>
         </h3>
-        <p className="type-caption text-text-muted">{memberCaptionLine(member)}</p>
+        <p className="type-label text-text-muted">{memberCaptionLine(member)}</p>
         {member.specializations.length > 0 ? (
           <p className="type-body-small line-clamp-2 text-text-muted">
             {member.specializations.join(' · ')}
           </p>
         ) : null}
-        <span
-          aria-hidden="true"
-          className="mt-auto hidden self-end text-primary transition-transform duration-150 group-hover:translate-x-1 md:block"
-        >
-          →
-        </span>
       </div>
     </article>
   );

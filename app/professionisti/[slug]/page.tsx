@@ -47,28 +47,28 @@ export default async function TeamMemberPage({ params }: Props) {
 
   return (
     <>
-      <section className="container-page py-12 lg:py-[var(--section-y)]">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-12">
-          <div className="mx-auto w-full max-w-[320px] lg:col-span-4 lg:mx-0 lg:max-w-[320px]">
+      <section className="container-page py-14 lg:py-[var(--section-y)]">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12">
+          <div className="mx-auto w-full max-w-[320px] lg:col-span-4 lg:mx-0 lg:max-w-none">
             <MediaFrame
               image={member.photo}
               aspectClassName="aspect-[4/5]"
               fallback={<SealMonogram className="h-20 w-20" label={member.name} />}
-              sizes="320px"
+              sizes="(min-width: 1024px) 30vw, 320px"
             />
           </div>
-          <div className="relative lg:col-span-7 lg:col-start-6 lg:pl-8">
-            <span className="margin-rule" aria-hidden="true" />
+          <div className="lg:col-span-7 lg:col-start-6 lg:self-center lg:pr-10">
+            <p className="type-label text-primary">{memberCaptionLine(member)}</p>
+            <span className="kicker-rule" aria-hidden="true" />
             <h1 className="type-title hyphens-auto">{member.name}</h1>
-            <p className="type-caption mt-2 text-text-muted">{memberCaptionLine(member)}</p>
             {member.specializations.length > 0 ? (
-              <p className="type-caption mt-3 text-text-muted">
+              <p className="type-label mt-4 text-text-muted">
                 {member.specializations.join(' · ')}
               </p>
             ) : null}
-            {lede ? <p className="type-body mt-4 max-w-[45ch] text-text-muted">{lede}</p> : null}
+            {lede ? <p className="type-body mt-5 max-w-[45ch] text-text-muted">{lede}</p> : null}
             {member.email ? (
-              <p className="mt-4">
+              <p className="mt-6">
                 <a href={`mailto:${member.email}`} className="text-link type-body-small">
                   {member.email}
                 </a>
@@ -93,11 +93,14 @@ export default async function TeamMemberPage({ params }: Props) {
           <SectionHeader
             title={fillTemplate(ui.postsByAuthorTitle, { name: member.name })}
           />
-          <div className="mt-8 grid gap-[var(--card-gap)] md:grid-cols-2">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} authorName={member.name} />
+          <ol className="mt-8">
+            {posts.map((post, index) => (
+              <li key={post.slug}>
+                <PostCard post={post} authorName={member.name} index={index + 1} />
+              </li>
             ))}
-          </div>
+            <li aria-hidden="true" className="border-t border-border" />
+          </ol>
         </section>
       ) : null}
 

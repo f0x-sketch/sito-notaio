@@ -21,9 +21,9 @@ function isCurrent(href: string, pathname: string): boolean {
 }
 
 /**
- * Mobile navigation panel (DESIGN.md §5.2): stacked nav links with hairline
- * dividers, then a contact block. Focus is trapped while open; `Escape`,
- * a link activation, or the toggle closes it and returns focus to the toggle.
+ * Full-bleed editorial menu: oversized display links on the inverse surface,
+ * then a contact block. Focus is trapped while open; `Escape`, a link
+ * activation, or the toggle closes it and returns focus to the toggle.
  */
 export function MobileNavDrawer({
   open,
@@ -78,25 +78,25 @@ export function MobileNavDrawer({
       ref={panelRef}
       inert={!open}
       onKeyDown={handleKeyDown}
-      className={`absolute inset-x-0 top-full z-40 min-h-[calc(100dvh-4rem)] border-b border-border bg-surface-raised shadow-elevation-2 transition-[opacity,transform] duration-150 ease-standard lg:hidden ${
+      className={`surface-inverse absolute inset-x-0 top-full z-40 min-h-[calc(100dvh-72px)] bg-surface-inverse text-text-inverse transition-[opacity,transform] duration-150 ease-standard lg:hidden ${
         open
           ? 'pointer-events-auto translate-x-0 opacity-100'
           : 'pointer-events-none invisible translate-x-2 opacity-0'
       }`}
     >
-      <nav aria-label={navLabel} className="flex min-h-[calc(100dvh-4rem)] flex-col">
-        <ul className="border-b border-border">
+      <nav aria-label={navLabel} className="flex min-h-[calc(100dvh-72px)] flex-col">
+        <ul>
           {items.map((item, index) => (
-            <li key={item.href} className="border-t border-border first:border-t-0">
+            <li key={item.href} className="border-b border-text-inverse-muted/40">
               <Link
                 ref={index === 0 ? firstLinkRef : undefined}
                 href={item.href}
                 aria-current={isCurrent(item.href, currentPath) ? 'page' : undefined}
                 onClick={onClose}
-                className={`type-heading-3 flex min-h-12 items-center px-[var(--page-gutter)] py-3 ${
+                className={`type-title flex min-h-16 items-center px-[var(--page-gutter)] py-4 hyphens-auto ${
                   isCurrent(item.href, currentPath)
-                    ? 'border-b-2 border-primary text-primary'
-                    : 'text-text hover:text-primary hover:underline'
+                    ? 'text-primary-tint'
+                    : 'text-text-inverse hover:text-primary-tint'
                 }`}
               >
                 {item.label}
@@ -105,25 +105,21 @@ export function MobileNavDrawer({
           ))}
         </ul>
 
-        <div className="mt-auto flex flex-col gap-3 px-[var(--page-gutter)] py-8">
+        <div className="mt-auto flex flex-col gap-4 px-[var(--page-gutter)] py-10">
           <a
             href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-            className="type-body-small tabular-nums rounded-xs text-text underline underline-offset-4 hover:text-primary"
+            className="type-body tabular-nums rounded-xs text-text-inverse underline underline-offset-4 hover:text-primary-tint"
           >
             {contact.phone}
           </a>
           <a
             href={`mailto:${contact.email}`}
-            className="type-body-small rounded-xs text-text underline underline-offset-4 hover:text-primary"
+            className="type-body-small rounded-xs text-text-inverse underline underline-offset-4 hover:text-primary-tint"
           >
             {contact.email}
           </a>
           {cta ? (
-            <Link
-              href={cta.href}
-              onClick={onClose}
-              className="button-primary w-full"
-            >
+            <Link href={cta.href} onClick={onClose} className="button-inverse w-full">
               {cta.label}
             </Link>
           ) : null}

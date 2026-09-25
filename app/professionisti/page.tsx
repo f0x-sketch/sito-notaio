@@ -33,7 +33,7 @@ export default function TeamIndexPage() {
           <>
             <SectionHeader title={ui.teamSectionTitle} />
             <div
-              className={`mt-8 grid gap-[var(--card-gap)] ${
+              className={`mt-10 grid gap-x-10 gap-y-10 ${
                 team.length < 3 ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'
               }`}
             >
